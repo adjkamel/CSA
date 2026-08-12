@@ -1,0 +1,21 @@
+{
+  "run_tag": "ntu60_xview_seed0",
+  "dataset": "ntu60",
+  "protocol": "xview",
+  "seed": 0,
+  "shuffle_variant": -1,
+  "lambda_align": 0.3,
+  "novelty_threshold": 0.45,
+  "novel_sample_fraction": 0.03,
+  "per_task_acc": [
+    93.24238578680203,
+    87.81919111816019,
+    82.54941338124934,
+    78.1802330189427,
+    76.92258923476828,
+    73.66363828438622
+  ],
+  "average_acc": 82.0629,
+  "num_tasks": 6,
+  "timestamp": "2026-07-19T07:21:48.581957"
+}

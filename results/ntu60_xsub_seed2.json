@@ -1,0 +1,21 @@
+{
+  "run_tag": "ntu60_xsub_seed2",
+  "dataset": "ntu60",
+  "protocol": "xsub",
+  "seed": 2,
+  "shuffle_variant": -1,
+  "lambda_align": 0.3,
+  "novelty_threshold": 0.45,
+  "novel_sample_fraction": 0.03,
+  "per_task_acc": [
+    92.55087209302326,
+    82.40959476649101,
+    76.41349187090512,
+    72.90927290927291,
+    71.72283281170391,
+    70.36452962940498
+  ],
+  "average_acc": 77.7284,
+  "num_tasks": 6,
+  "timestamp": "2026-07-17T23:32:58.571531"
+}

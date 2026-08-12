@@ -1,0 +1,1194 @@
+Script started on 2026-08-01 09:15:14+00:00 [TERM="xterm-256color" TTY="/dev/pts/3" COLUMNS="143" LINES="45"]
+cuda
+  [Protocol] dataset=ntu60  protocol=xsub  tasks=6  classes=60
+  [Shuffle] variant=2 (seed=102)  new class order per task:
+    task 1: [11, 18, 30, 14, 21, 45, 37, 31, 48, 19]
+    task 2: [53, 7, 8, 40, 6, 56, 22, 10, 35, 3]
+    task 3: [49, 16, 25, 44, 50, 55, 5, 28, 58, 54]
+    task 4: [47, 42, 38, 52, 29, 33, 24, 26, 34, 27]
+    task 5: [51, 9, 12, 43, 36, 59, 1, 20, 2, 13]
+    task 6: [41, 60, 4, 15, 46, 23, 17, 57, 32, 39]
+  [Shuffle] TASK_SPLITS updated for variant 2
+[BERT] Loaded 60 features from data/ntu/bert_feats_60.npy
+[BERT] Loaded 51 features from data/pku/bert_feats.npy
+[SentenceBertBank/SPICE] 60 NTU classes (60 with full sentences)  |  novelty = SPICE F1 on raw text
+Dataset / protocol     : NTU60 / xsub
+Tasks                  : 6 x 10 classes
+NPY path               : data/ntu/npy60/
+Device                 : cuda
+Global mode            : autoencoder
+Part source            : PKU
+  PKU npy path         : data/pku/npy
+S samples per class    : None
+λ_align                : 0.3
+CE loss weight         : 0.3
+CE class mode          : 1 (1=current+novel, 2=novel only, 3=current only)
+Novelty threshold      : 0.45
+Alpha init             : 0.5
+Global seed            : -1  (disabled (shuffle active))
+Shuffle variant        : 2  (shuffled class order — seed disabled)
+
+============================================================
+  PHASE 1 — Part Pre-training  [source: PKU-MMD, all files]
+============================================================
+
+  Loading part: torso
+
+  Loading part: left_arm
+
+  Loading part: right_arm
+
+  Loading part: left_leg
+
+  Loading part: right_leg
+
+============================================================
+  PHASE 2 — Global Autoencoder Training 
+============================================================
+  [Seed] seeding disabled (shuffle_variant=2 active)
+
+────────────────────────────────────────────────────────────
+  TASK 1
+────────────────────────────────────────────────────────────
+  [FastModel] Task 1 — fresh init (global backbone <- ProtoGCN)
+  [GlobalData] task 1: 6686 current + 0 rehearsed (fraction=0.03) = 6686 samples
+  [CE] mode=1 (current + novel) classes=10 ids=[11, 14, 18, 19, 21, 30, 31, 37, 45, 48]
+
+  [Step 1] Training global model on task 1 (10 current + 0 rehearsed previous classes) ...
+    [GlobalAE]   2.0%  ep 1/50  loss=1.541479  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]   4.0%  ep 2/50  loss=0.844636  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]   6.0%  ep 3/50  loss=0.698834  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]   8.0%  ep 4/50  loss=0.605214  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  10.0%  ep 5/50  loss=0.586756  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  12.0%  ep 6/50  loss=0.557063  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  14.0%  ep 7/50  loss=0.496742  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  16.0%  ep 8/50  loss=0.448027  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  18.0%  ep 9/50  loss=0.408773  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  20.0%  ep 10/50  loss=0.487851  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  22.0%  ep 11/50  loss=0.671994  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  24.0%  ep 12/50  loss=0.615517  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  26.0%  ep 13/50  loss=0.565788  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  28.0%  ep 14/50  loss=0.537916  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  30.0%  ep 15/50  loss=0.514701  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  32.0%  ep 16/50  loss=0.495207  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  34.0%  ep 17/50  loss=0.513886  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  36.0%  ep 18/50  loss=0.474999  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  38.0%  ep 19/50  loss=0.452541  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  40.0%  ep 20/50  loss=0.441837  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  42.0%  ep 21/50  loss=0.423442  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  44.0%  ep 22/50  loss=0.410536  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  46.0%  ep 23/50  loss=0.395159  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  48.0%  ep 24/50  loss=0.388855  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  50.0%  ep 25/50  loss=0.377136  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  52.0%  ep 26/50  loss=0.358810  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  54.0%  ep 27/50  loss=0.351181  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  56.0%  ep 28/50  loss=0.341512  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  58.0%  ep 29/50  loss=0.331683  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  60.0%  ep 30/50  loss=0.333814  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  62.0%  ep 31/50  loss=0.318579  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  64.0%  ep 32/50  loss=0.309206  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  66.0%  ep 33/50  loss=0.303854  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  68.0%  ep 34/50  loss=0.301472  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  70.0%  ep 35/50  loss=0.292226  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  72.0%  ep 36/50  loss=0.286990  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  74.0%  ep 37/50  loss=0.277237  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  76.0%  ep 38/50  loss=0.274203  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  78.0%  ep 39/50  loss=0.267170  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  80.0%  ep 40/50  loss=0.256946  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  82.0%  ep 41/50  loss=0.248857  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  84.0%  ep 42/50  loss=0.243885  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  86.0%  ep 43/50  loss=0.247115  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  88.0%  ep 44/50  loss=0.250644  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  90.0%  ep 45/50  loss=0.235876  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  92.0%  ep 46/50  loss=0.224610  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  94.0%  ep 47/50  loss=0.221345  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  96.0%  ep 48/50  loss=0.214390  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  98.0%  ep 49/50  loss=0.201510  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE] 100.0%  ep 50/50  loss=0.194767  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [saved] ckpt_run/ntu60_xsub_shuf2/global_ae_task1.pt
+
+────────────────────────────────────────────────────────────
+  TASK 2
+────────────────────────────────────────────────────────────
+  [FastModel] Task 2 — loaded full model from task 1 (carries decoder + bert_proj_frozen + extra_layers)
+
+  [Step 4] Uncovered-previous-class detection for task 2 ...
+  [Rehearsal] Task 2: checking 10 previous classes against 10 current (threshold=0.45)
+    [UNCOVERED] prev  11 (reading)  best match to current = 56 (giving object to someone) F1=0.378 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  18 (put on glasses)  best match to current = 56 (giving object to someone) F1=0.372 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  30 (type on a keyboard)  best match to current = 35 (nod head or bow) F1=0.390 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  14 (put on jacket)  best match to current = 22 (cheer up) F1=0.432 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  21 (take off a hat or cap)  best match to current = 3 (brush teeth) F1=0.381 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  45 (chest pain)  best match to current = 53 (pat on back) F1=0.353 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  37 (wipe face)  best match to current = 3 (brush teeth) F1=0.444 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  31 (point to something)  best match to current = 7 (throw) F1=0.381 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  48 (nausea or vomiting)  best match to current = 6 (pick up) F1=0.410 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  19 (take off glasses)  best match to current = 6 (pick up) F1=0.311 < 0.45  -> REHEARSE
+  [Rehearsal] adding 10 previous classes at fraction 0.03: [11, 18, 30, 14, 21, 45, 37, 31, 48, 19]
+  [Rehearsal] cumulative rehearsed set now: [11, 14, 18, 19, 21, 30, 31, 37, 45, 48]
+  [GlobalData] task 2: 6682 current + 200 rehearsed (fraction=0.03) = 6882 samples
+  [CE] mode=1 (current + novel) classes=20 ids=[3, 6, 7, 8, 10, 11, 14, 18, 19, 21, 22, 30, 31, 35, 37, 40, 45, 48, 53, 56]
+
+  [Step 5] Training global model on task 2 (10 current + 10 rehearsed previous classes) ...
+    [GlobalAE]   2.0%  ep 1/50  loss=0.329418  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]   4.0%  ep 2/50  loss=0.261036  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]   6.0%  ep 3/50  loss=0.226804  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]   8.0%  ep 4/50  loss=0.207943  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  10.0%  ep 5/50  loss=0.197315  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  12.0%  ep 6/50  loss=0.188300  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  14.0%  ep 7/50  loss=0.181795  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  16.0%  ep 8/50  loss=0.181607  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  18.0%  ep 9/50  loss=0.171971  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  20.0%  ep 10/50  loss=0.168108  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  22.0%  ep 11/50  loss=0.163905  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  24.0%  ep 12/50  loss=0.159436  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  26.0%  ep 13/50  loss=0.154461  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  28.0%  ep 14/50  loss=0.150988  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  30.0%  ep 15/50  loss=0.143344  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  32.0%  ep 16/50  loss=0.142633  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  34.0%  ep 17/50  loss=0.145579  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  36.0%  ep 18/50  loss=0.148670  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  38.0%  ep 19/50  loss=0.134836  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  40.0%  ep 20/50  loss=0.166820  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  42.0%  ep 21/50  loss=0.174049  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  44.0%  ep 22/50  loss=0.153888  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  46.0%  ep 23/50  loss=0.150187  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  48.0%  ep 24/50  loss=0.138943  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  50.0%  ep 25/50  loss=0.140169  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  52.0%  ep 26/50  loss=0.132997  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  54.0%  ep 27/50  loss=0.129699  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  56.0%  ep 28/50  loss=0.126630  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  58.0%  ep 29/50  loss=0.127865  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  60.0%  ep 30/50  loss=0.124864  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  62.0%  ep 31/50  loss=0.122877  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  64.0%  ep 32/50  loss=0.118254  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  66.0%  ep 33/50  loss=0.120905  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  68.0%  ep 34/50  loss=0.120384  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  70.0%  ep 35/50  loss=0.115796  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  72.0%  ep 36/50  loss=0.115525  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  74.0%  ep 37/50  loss=0.110972  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  76.0%  ep 38/50  loss=0.112019  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  78.0%  ep 39/50  loss=0.112803  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  80.0%  ep 40/50  loss=0.114418  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  82.0%  ep 41/50  loss=0.113917  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  84.0%  ep 42/50  loss=0.112494  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  86.0%  ep 43/50  loss=0.119340  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  88.0%  ep 44/50  loss=0.110486  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  90.0%  ep 45/50  loss=0.110684  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  92.0%  ep 46/50  loss=0.114388  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  94.0%  ep 47/50  loss=0.114453  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  96.0%  ep 48/50  loss=0.111005  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  98.0%  ep 49/50  loss=0.109348  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE] 100.0%  ep 50/50  loss=0.117179  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [saved] ckpt_run/ntu60_xsub_shuf2/global_ae_task2.pt
+
+────────────────────────────────────────────────────────────
+  TASK 3
+────────────────────────────────────────────────────────────
+  [FastModel] Task 3 — loaded full model from task 2 (carries decoder + bert_proj_frozen + extra_layers)
+
+  [Step 4] Uncovered-previous-class detection for task 3 ...
+  [Rehearsal] Task 3: checking 10 previous classes against 10 current (threshold=0.45)
+    [UNCOVERED] prev  53 (pat on back)  best match to current = 44 (headache) F1=0.400 < 0.45  -> REHEARSE
+    [covered]   prev   7 (throw)  matched current 50 (punch or slap) F1=0.636  -> skip
+    [UNCOVERED] prev   8 (sit down)  best match to current = 55 (hugging) F1=0.278 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  40 (cross hands in front)  best match to current = 25 (reach into pocket) F1=0.421 < 0.45  -> REHEARSE
+    [covered]   prev   6 (pick up)  matched current 16 (put on a shoe) F1=0.524  -> skip
+    [covered]   prev  56 (giving object to someone)  matched current 54 (point finger at someone) F1=0.476  -> skip
+    [UNCOVERED] prev  22 (cheer up)  best match to current = 55 (hugging) F1=0.323 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  10 (clapping)  best match to current = 58 (shaking hands) F1=0.400 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  35 (nod head or bow)  best match to current = 5 (drop) F1=0.238 < 0.45  -> REHEARSE
+    [UNCOVERED] prev   3 (brush teeth)  best match to current = 28 (phone call) F1=0.400 < 0.45  -> REHEARSE
+  [Rehearsal] adding 7 previous classes at fraction 0.03: [53, 8, 40, 22, 10, 35, 3]
+  [Rehearsal] cumulative rehearsed set now: [3, 8, 10, 11, 14, 18, 19, 21, 22, 30, 31, 35, 37, 40, 45, 48, 53]
+  [GlobalData] task 3: 6652 current + 140 rehearsed (fraction=0.03) = 6792 samples
+  [CE] mode=1 (current + novel) classes=17 ids=[3, 5, 8, 10, 16, 22, 25, 28, 35, 40, 44, 49, 50, 53, 54, 55, 58]
+
+  [Step 5] Training global model on task 3 (10 current + 7 rehearsed previous classes) ...
+    [GlobalAE]   2.0%  ep 1/50  loss=0.363767  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]   4.0%  ep 2/50  loss=0.265656  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]   6.0%  ep 3/50  loss=0.238249  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]   8.0%  ep 4/50  loss=0.220133  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  10.0%  ep 5/50  loss=0.202920  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  12.0%  ep 6/50  loss=0.193641  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  14.0%  ep 7/50  loss=0.186853  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  16.0%  ep 8/50  loss=0.176234  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  18.0%  ep 9/50  loss=0.172394  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  20.0%  ep 10/50  loss=0.170013  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  22.0%  ep 11/50  loss=0.165765  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  24.0%  ep 12/50  loss=0.153469  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  26.0%  ep 13/50  loss=0.156333  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  28.0%  ep 14/50  loss=0.152415  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  30.0%  ep 15/50  loss=0.151255  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  32.0%  ep 16/50  loss=0.144053  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  34.0%  ep 17/50  loss=0.145275  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  36.0%  ep 18/50  loss=0.150645  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  38.0%  ep 19/50  loss=0.143936  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  40.0%  ep 20/50  loss=0.141575  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  42.0%  ep 21/50  loss=0.139214  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  44.0%  ep 22/50  loss=0.143024  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  46.0%  ep 23/50  loss=0.141014  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  48.0%  ep 24/50  loss=0.135877  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  50.0%  ep 25/50  loss=0.140305  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  52.0%  ep 26/50  loss=0.135451  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  54.0%  ep 27/50  loss=0.132560  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  56.0%  ep 28/50  loss=0.139563  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  58.0%  ep 29/50  loss=0.134650  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  60.0%  ep 30/50  loss=0.140495  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  62.0%  ep 31/50  loss=0.138645  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  64.0%  ep 32/50  loss=0.132550  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  66.0%  ep 33/50  loss=0.133181  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  68.0%  ep 34/50  loss=0.129396  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  70.0%  ep 35/50  loss=0.134002  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  72.0%  ep 36/50  loss=0.134562  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  74.0%  ep 37/50  loss=0.132114  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  76.0%  ep 38/50  loss=0.131139  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  78.0%  ep 39/50  loss=0.131977  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  80.0%  ep 40/50  loss=0.133975  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  82.0%  ep 41/50  loss=0.131508  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  84.0%  ep 42/50  loss=0.133934  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  86.0%  ep 43/50  loss=0.131277  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  88.0%  ep 44/50  loss=0.125316  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  90.0%  ep 45/50  loss=0.127021  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  92.0%  ep 46/50  loss=0.128323  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  94.0%  ep 47/50  loss=0.125455  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  96.0%  ep 48/50  loss=0.123557  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  98.0%  ep 49/50  loss=0.140829  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE] 100.0%  ep 50/50  loss=0.133334  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [saved] ckpt_run/ntu60_xsub_shuf2/global_ae_task3.pt
+
+────────────────────────────────────────────────────────────
+  TASK 4
+────────────────────────────────────────────────────────────
+  [FastModel] Task 4 — loaded full model from task 3 (carries decoder + bert_proj_frozen + extra_layers)
+
+  [Step 4] Uncovered-previous-class detection for task 4 ...
+  [Rehearsal] Task 4: checking 13 previous classes against 10 current (threshold=0.45)
+    [covered]   prev   7 (throw)  matched current 52 (pushing) F1=0.522  -> skip
+    [UNCOVERED] prev   6 (pick up)  best match to current = 47 (neck pain) F1=0.233 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  56 (giving object to someone)  best match to current = 52 (pushing) F1=0.429 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  49 (fan self)  best match to current = 34 (rub two hands together) F1=0.414 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  16 (put on a shoe)  best match to current = 29 (play with phone or tablet) F1=0.263 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  25 (reach into pocket)  best match to current = 34 (rub two hands together) F1=0.333 < 0.45  -> REHEARSE
+    [covered]   prev  44 (headache)  matched current 47 (neck pain) F1=0.556  -> skip
+    [covered]   prev  50 (punch or slap)  matched current 52 (pushing) F1=0.591  -> skip
+    [covered]   prev  55 (hugging)  matched current 52 (pushing) F1=0.462  -> skip
+    [UNCOVERED] prev   5 (drop)  best match to current = 52 (pushing) F1=0.170 < 0.45  -> REHEARSE
+    [covered]   prev  28 (phone call)  matched current 47 (neck pain) F1=0.476  -> skip
+    [UNCOVERED] prev  58 (shaking hands)  best match to current = 34 (rub two hands together) F1=0.357 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  54 (point finger at someone)  best match to current = 52 (pushing) F1=0.435 < 0.45  -> REHEARSE
+  [Rehearsal] adding 8 previous classes at fraction 0.03: [6, 56, 49, 16, 25, 5, 58, 54]
+  [Rehearsal] cumulative rehearsed set now: [3, 5, 6, 8, 10, 11, 14, 16, 18, 19, 21, 22, 25, 30, 31, 35, 37, 40, 45, 48, 49, 53, 54, 56, 58]
+  [GlobalData] task 4: 6709 current + 160 rehearsed (fraction=0.03) = 6869 samples
+  [CE] mode=1 (current + novel) classes=18 ids=[5, 6, 16, 24, 25, 26, 27, 29, 33, 34, 38, 42, 47, 49, 52, 54, 56, 58]
+
+  [Step 5] Training global model on task 4 (10 current + 8 rehearsed previous classes) ...
+    [GlobalAE]   2.0%  ep 1/50  loss=0.273777  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]   4.0%  ep 2/50  loss=0.170558  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]   6.0%  ep 3/50  loss=0.146753  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]   8.0%  ep 4/50  loss=0.129853  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  10.0%  ep 5/50  loss=0.117002  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  12.0%  ep 6/50  loss=0.110881  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  14.0%  ep 7/50  loss=0.112186  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  16.0%  ep 8/50  loss=0.102664  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  18.0%  ep 9/50  loss=0.094857  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  20.0%  ep 10/50  loss=0.097762  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  22.0%  ep 11/50  loss=0.091068  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  24.0%  ep 12/50  loss=0.094845  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  26.0%  ep 13/50  loss=0.096340  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  28.0%  ep 14/50  loss=0.089921  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  30.0%  ep 15/50  loss=0.090232  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  32.0%  ep 16/50  loss=0.088645  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  34.0%  ep 17/50  loss=0.087942  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  36.0%  ep 18/50  loss=0.091125  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  38.0%  ep 19/50  loss=0.086641  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  40.0%  ep 20/50  loss=0.085157  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  42.0%  ep 21/50  loss=0.090448  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  44.0%  ep 22/50  loss=0.089425  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  46.0%  ep 23/50  loss=0.084614  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  48.0%  ep 24/50  loss=0.085497  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  50.0%  ep 25/50  loss=0.086129  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  52.0%  ep 26/50  loss=0.087985  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  54.0%  ep 27/50  loss=0.085701  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  56.0%  ep 28/50  loss=0.088365  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  58.0%  ep 29/50  loss=0.085481  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  60.0%  ep 30/50  loss=0.085842  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  62.0%  ep 31/50  loss=0.088445  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  64.0%  ep 32/50  loss=0.085209  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  66.0%  ep 33/50  loss=0.080732  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  68.0%  ep 34/50  loss=0.080037  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  70.0%  ep 35/50  loss=0.080276  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  72.0%  ep 36/50  loss=0.082623  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  74.0%  ep 37/50  loss=0.083369  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  76.0%  ep 38/50  loss=0.081821  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  78.0%  ep 39/50  loss=0.082849  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  80.0%  ep 40/50  loss=0.083029  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  82.0%  ep 41/50  loss=0.081773  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  84.0%  ep 42/50  loss=0.081923  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  86.0%  ep 43/50  loss=0.082773  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  88.0%  ep 44/50  loss=0.081876  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [GlobalAE]  90.0%  ep 45/50  loss=0.081296  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [GlobalAE]  92.0%  ep 46/50  loss=0.080973  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [GlobalAE]  94.0%  ep 47/50  loss=0.079782  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [GlobalAE]  96.0%  ep 48/50  loss=0.081867  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [GlobalAE]  98.0%  ep 49/50  loss=0.080020  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [GlobalAE] 100.0%  ep 50/50  loss=0.079219  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [saved] ckpt_run/ntu60_xsub_shuf2/global_ae_task4.pt
+
+────────────────────────────────────────────────────────────
+  TASK 5
+────────────────────────────────────────────────────────────
+  [FastModel] Task 5 — loaded full model from task 4 (carries decoder + bert_proj_frozen + extra_layers)
+
+  [Step 4] Uncovered-previous-class detection for task 5 ...
+  [Rehearsal] Task 5: checking 15 previous classes against 10 current (threshold=0.45)
+    [UNCOVERED] prev   7 (throw)  best match to current = 59 (walking towards someone) F1=0.293 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  44 (headache)  best match to current = 20 (put on a hat or cap) F1=0.270 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  50 (punch or slap)  best match to current = 59 (walking towards someone) F1=0.256 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  55 (hugging)  best match to current = 59 (walking towards someone) F1=0.294 < 0.45  -> REHEARSE
+    [covered]   prev  28 (phone call)  matched current 20 (put on a hat or cap) F1=0.465  -> skip
+    [UNCOVERED] prev  47 (neck pain)  best match to current = 36 (shake head) F1=0.375 < 0.45  -> REHEARSE
+    [covered]   prev  42 (staggering)  matched current 43 (falling down) F1=0.615  -> skip
+    [covered]   prev  38 (salute)  matched current 20 (put on a hat or cap) F1=0.606  -> skip
+    [UNCOVERED] prev  52 (pushing)  best match to current = 13 (tear up paper) F1=0.279 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  29 (play with phone or tablet)  best match to current = 20 (put on a hat or cap) F1=0.350 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  33 (check time from watch)  best match to current = 13 (tear up paper) F1=0.389 < 0.45  -> REHEARSE
+    [covered]   prev  24 (kicking something)  matched current 51 (kicking) F1=0.667  -> skip
+    [UNCOVERED] prev  26 (hopping)  best match to current = 43 (falling down) F1=0.414 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  34 (rub two hands together)  best match to current = 20 (put on a hat or cap) F1=0.424 < 0.45  -> REHEARSE
+    [covered]   prev  27 (jump up)  matched current 9 (stand up) F1=0.524  -> skip
+  [Rehearsal] adding 10 previous classes at fraction 0.03: [7, 44, 50, 55, 47, 52, 29, 33, 26, 34]
+  [Rehearsal] cumulative rehearsed set now: [3, 5, 6, 7, 8, 10, 11, 14, 16, 18, 19, 21, 22, 25, 26, 29, 30, 31, 33, 34, 35, 37, 40, 44, 45, 47, 48, 49, 50, 52, 53, 54, 55, 56, 58]
+  [GlobalData] task 5: 6666 current + 199 rehearsed (fraction=0.03) = 6865 samples
+  [CE] mode=1 (current + novel) classes=20 ids=[1, 2, 7, 9, 12, 13, 20, 26, 29, 33, 34, 36, 43, 44, 47, 50, 51, 52, 55, 59]
+
+  [Step 5] Training global model on task 5 (10 current + 10 rehearsed previous classes) ...
+    [GlobalAE]   2.0%  ep 1/50  loss=0.355986  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]   4.0%  ep 2/50  loss=0.246008  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]   6.0%  ep 3/50  loss=0.217898  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]   8.0%  ep 4/50  loss=0.202582  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  10.0%  ep 5/50  loss=0.190332  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  12.0%  ep 6/50  loss=0.186936  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  14.0%  ep 7/50  loss=0.182493  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  16.0%  ep 8/50  loss=0.178536  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  18.0%  ep 9/50  loss=0.173687  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  20.0%  ep 10/50  loss=0.171190  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  22.0%  ep 11/50  loss=0.169873  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  24.0%  ep 12/50  loss=0.167918  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  26.0%  ep 13/50  loss=0.170886  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  28.0%  ep 14/50  loss=0.168445  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  30.0%  ep 15/50  loss=0.169095  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  32.0%  ep 16/50  loss=0.168864  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  34.0%  ep 17/50  loss=0.166890  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  36.0%  ep 18/50  loss=0.162387  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  38.0%  ep 19/50  loss=0.167767  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  40.0%  ep 20/50  loss=0.165158  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  42.0%  ep 21/50  loss=0.165532  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  44.0%  ep 22/50  loss=0.167913  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  46.0%  ep 23/50  loss=0.164675  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  48.0%  ep 24/50  loss=0.166453  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  50.0%  ep 25/50  loss=0.164130  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  52.0%  ep 26/50  loss=0.163555  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  54.0%  ep 27/50  loss=0.162621  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  56.0%  ep 28/50  loss=0.161881  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  58.0%  ep 29/50  loss=0.160126  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  60.0%  ep 30/50  loss=0.159631  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  62.0%  ep 31/50  loss=0.158935  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  64.0%  ep 32/50  loss=0.160058  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  66.0%  ep 33/50  loss=0.159961  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  68.0%  ep 34/50  loss=0.160296  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  70.0%  ep 35/50  loss=0.165471  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  72.0%  ep 36/50  loss=0.163118  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  74.0%  ep 37/50  loss=0.166414  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  76.0%  ep 38/50  loss=0.160654  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  78.0%  ep 39/50  loss=0.161407  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  80.0%  ep 40/50  loss=0.162016  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  82.0%  ep 41/50  loss=0.164708  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [GlobalAE]  84.0%  ep 42/50  loss=0.161685  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [GlobalAE]  86.0%  ep 43/50  loss=0.159543  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [GlobalAE]  88.0%  ep 44/50  loss=0.159411  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [GlobalAE]  90.0%  ep 45/50  loss=0.158990  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [GlobalAE]  92.0%  ep 46/50  loss=0.158594  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [GlobalAE]  94.0%  ep 47/50  loss=0.158745  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [GlobalAE]  96.0%  ep 48/50  loss=0.158386  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [GlobalAE]  98.0%  ep 49/50  loss=0.159494  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [GlobalAE] 100.0%  ep 50/50  loss=0.160699  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [saved] ckpt_run/ntu60_xsub_shuf2/global_ae_task5.pt
+
+────────────────────────────────────────────────────────────
+  TASK 6
+────────────────────────────────────────────────────────────
+  [FastModel] Task 6 — loaded full model from task 5 (carries decoder + bert_proj_frozen + extra_layers)
+
+  [Step 4] Uncovered-previous-class detection for task 6 ...
+  [Rehearsal] Task 6: checking 15 previous classes against 10 current (threshold=0.45)
+    [covered]   prev  28 (phone call)  matched current 32 (taking a selfie) F1=0.476  -> skip
+    [UNCOVERED] prev  42 (staggering)  best match to current = 46 (back pain) F1=0.333 < 0.45  -> REHEARSE
+    [covered]   prev  38 (salute)  matched current 39 (put palms together) F1=0.485  -> skip
+    [UNCOVERED] prev  24 (kicking something)  best match to current = 46 (back pain) F1=0.250 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  27 (jump up)  best match to current = 60 (walking apart from someone) F1=0.270 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  51 (kicking)  best match to current = 46 (back pain) F1=0.293 < 0.45  -> REHEARSE
+    [UNCOVERED] prev   9 (stand up)  best match to current = 60 (walking apart from someone) F1=0.216 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  12 (writing)  best match to current = 41 (sneeze or cough) F1=0.316 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  43 (falling down)  best match to current = 46 (back pain) F1=0.250 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  36 (shake head)  best match to current = 32 (taking a selfie) F1=0.312 < 0.45  -> REHEARSE
+    [covered]   prev  59 (walking towards someone)  matched current 60 (walking apart from someone) F1=0.765  -> skip
+    [UNCOVERED] prev   1 (drink water)  best match to current = 32 (taking a selfie) F1=0.348 < 0.45  -> REHEARSE
+    [covered]   prev  20 (put on a hat or cap)  matched current 39 (put palms together) F1=0.550  -> skip
+    [UNCOVERED] prev   2 (eat meal)  best match to current = 41 (sneeze or cough) F1=0.341 < 0.45  -> REHEARSE
+    [UNCOVERED] prev  13 (tear up paper)  best match to current = 32 (taking a selfie) F1=0.359 < 0.45  -> REHEARSE
+  [Rehearsal] adding 11 previous classes at fraction 0.03: [42, 24, 27, 51, 9, 12, 43, 36, 1, 2, 13]
+  [Rehearsal] cumulative rehearsed set now: [1, 2, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 16, 18, 19, 21, 22, 24, 25, 26, 27, 29, 30, 31, 33, 34, 35, 36, 37, 40, 42, 43, 44, 45, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 58]
+  [GlobalData] task 6: 6696 current + 220 rehearsed (fraction=0.03) = 6916 samples
+  [CE] mode=1 (current + novel) classes=21 ids=[1, 2, 4, 9, 12, 13, 15, 17, 23, 24, 27, 32, 36, 39, 41, 42, 43, 46, 51, 57, 60]
+
+  [Step 5] Training global model on task 6 (10 current + 11 rehearsed previous classes) ...
+    [GlobalAE]   2.0%  ep 1/50  loss=0.297459  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]   4.0%  ep 2/50  loss=0.183386  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]   6.0%  ep 3/50  loss=0.158350  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]   8.0%  ep 4/50  loss=0.139310  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  10.0%  ep 5/50  loss=0.129743  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  12.0%  ep 6/50  loss=0.127362  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  14.0%  ep 7/50  loss=0.124332  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  16.0%  ep 8/50  loss=0.123535  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  18.0%  ep 9/50  loss=0.118409  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  20.0%  ep 10/50  loss=0.118606  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  22.0%  ep 11/50  loss=0.113632  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  24.0%  ep 12/50  loss=0.112764  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  26.0%  ep 13/50  loss=0.119158  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  28.0%  ep 14/50  loss=0.114955  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  30.0%  ep 15/50  loss=0.116488  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  32.0%  ep 16/50  loss=0.119320  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  34.0%  ep 17/50  loss=0.116730  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  36.0%  ep 18/50  loss=0.114085  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  38.0%  ep 19/50  loss=0.112020  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  40.0%  ep 20/50  loss=0.114851  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  42.0%  ep 21/50  loss=0.109774  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  44.0%  ep 22/50  loss=0.111045  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  46.0%  ep 23/50  loss=0.116584  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  48.0%  ep 24/50  loss=0.122470  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  50.0%  ep 25/50  loss=0.112427  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  52.0%  ep 26/50  loss=0.111483  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  54.0%  ep 27/50  loss=0.110151  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  56.0%  ep 28/50  loss=0.110289  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  58.0%  ep 29/50  loss=0.130739  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  60.0%  ep 30/50  loss=0.167080  [recon+0.3*align+0.3*ce]  lr=0.0001
+    [GlobalAE]  62.0%  ep 31/50  loss=0.162285  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  64.0%  ep 32/50  loss=0.156610  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  66.0%  ep 33/50  loss=0.152382  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  68.0%  ep 34/50  loss=0.152946  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  70.0%  ep 35/50  loss=0.155800  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  72.0%  ep 36/50  loss=0.147990  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  74.0%  ep 37/50  loss=0.144843  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  76.0%  ep 38/50  loss=0.142438  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  78.0%  ep 39/50  loss=0.141646  [recon+0.3*align+0.3*ce]  lr=8e-05
+    [GlobalAE]  80.0%  ep 40/50  loss=0.140958  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [GlobalAE]  82.0%  ep 41/50  loss=0.142762  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [GlobalAE]  84.0%  ep 42/50  loss=0.140411  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [GlobalAE]  86.0%  ep 43/50  loss=0.139301  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [GlobalAE]  88.0%  ep 44/50  loss=0.136535  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [GlobalAE]  90.0%  ep 45/50  loss=0.133763  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [GlobalAE]  92.0%  ep 46/50  loss=0.134237  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [GlobalAE]  94.0%  ep 47/50  loss=0.134673  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [GlobalAE]  96.0%  ep 48/50  loss=0.131113  [recon+0.3*align+0.3*ce]  lr=6.4e-05
+    [GlobalAE]  98.0%  ep 49/50  loss=0.129952  [recon+0.3*align+0.3*ce]  lr=5.1e-05
+    [GlobalAE] 100.0%  ep 50/50  loss=0.130633  [recon+0.3*align+0.3*ce]  lr=5.1e-05
+    [saved] ckpt_run/ntu60_xsub_shuf2/global_ae_task6.pt
+
+  [GlobalAE] Global autoencoder training complete.
+
+============================================================
+  PHASE 3 — CIL Classifiers  [LINEAR on frozen z_task]
+============================================================
+  [Seed] seeding disabled (shuffle_variant=2 active)
+
+────────────────────────────────────────────────────────────
+  TASK 1 — Train classifier
+────────────────────────────────────────────────────────────
+  [Classifier] Extracting features for tasks 1..1 ...
+    [Classifier]   1.0%  ep 1/100  loss=2.105648  lr=0.0001
+    [Classifier]   2.0%  ep 2/100  loss=1.234685  lr=0.0001
+    [Classifier]   3.0%  ep 3/100  loss=0.901984  lr=0.0001
+    [Classifier]   4.0%  ep 4/100  loss=0.746658  lr=0.0001
+    [Classifier]   5.0%  ep 5/100  loss=0.661331  lr=0.0001
+    [Classifier]   6.0%  ep 6/100  loss=0.611781  lr=0.0001
+    [Classifier]   7.0%  ep 7/100  loss=0.573339  lr=0.0001
+    [Classifier]   8.0%  ep 8/100  loss=0.546938  lr=0.0001
+    [Classifier]   9.0%  ep 9/100  loss=0.525990  lr=0.0001
+    [Classifier]  10.0%  ep 10/100  loss=0.515540  lr=0.0001
+    [Classifier]  11.0%  ep 11/100  loss=0.500722  lr=0.0001
+    [Classifier]  12.0%  ep 12/100  loss=0.490958  lr=0.0001
+    [Classifier]  13.0%  ep 13/100  loss=0.482155  lr=0.0001
+    [Classifier]  14.0%  ep 14/100  loss=0.475204  lr=0.0001
+    [Classifier]  15.0%  ep 15/100  loss=0.468502  lr=0.0001
+    [Classifier]  16.0%  ep 16/100  loss=0.460372  lr=0.0001
+    [Classifier]  17.0%  ep 17/100  loss=0.458065  lr=0.0001
+    [Classifier]  18.0%  ep 18/100  loss=0.454102  lr=0.0001
+    [Classifier]  19.0%  ep 19/100  loss=0.448507  lr=0.0001
+    [Classifier]  20.0%  ep 20/100  loss=0.445238  lr=0.0001
+    [Classifier]  21.0%  ep 21/100  loss=0.442221  lr=0.0001
+    [Classifier]  22.0%  ep 22/100  loss=0.440216  lr=0.0001
+    [Classifier]  23.0%  ep 23/100  loss=0.435422  lr=0.0001
+    [Classifier]  24.0%  ep 24/100  loss=0.433168  lr=0.0001
+    [Classifier]  25.0%  ep 25/100  loss=0.429933  lr=0.0001
+    [Classifier]  26.0%  ep 26/100  loss=0.428243  lr=0.0001
+    [Classifier]  27.0%  ep 27/100  loss=0.427896  lr=0.0001
+    [Classifier]  28.0%  ep 28/100  loss=0.424150  lr=0.0001
+    [Classifier]  29.0%  ep 29/100  loss=0.424529  lr=0.0001
+    [Classifier]  30.0%  ep 30/100  loss=0.425790  lr=0.0001
+    [Classifier]  31.0%  ep 31/100  loss=0.421478  lr=0.0001
+    [Classifier]  32.0%  ep 32/100  loss=0.417104  lr=0.0001
+    [Classifier]  33.0%  ep 33/100  loss=0.416866  lr=0.0001
+    [Classifier]  34.0%  ep 34/100  loss=0.414148  lr=0.0001
+    [Classifier]  35.0%  ep 35/100  loss=0.413720  lr=0.0001
+    [Classifier]  36.0%  ep 36/100  loss=0.416177  lr=0.0001
+    [Classifier]  37.0%  ep 37/100  loss=0.411946  lr=0.0001
+    [Classifier]  38.0%  ep 38/100  loss=0.408402  lr=0.0001
+    [Classifier]  39.0%  ep 39/100  loss=0.407253  lr=0.0001
+    [Classifier]  40.0%  ep 40/100  loss=0.408515  lr=0.0001
+    [Classifier]  41.0%  ep 41/100  loss=0.408501  lr=0.0001
+    [Classifier]  42.0%  ep 42/100  loss=0.406035  lr=0.0001
+    [Classifier]  43.0%  ep 43/100  loss=0.405151  lr=0.0001
+    [Classifier]  44.0%  ep 44/100  loss=0.404701  lr=0.0001
+    [Classifier]  45.0%  ep 45/100  loss=0.402338  lr=0.0001
+    [Classifier]  46.0%  ep 46/100  loss=0.401670  lr=0.0001
+    [Classifier]  47.0%  ep 47/100  loss=0.401534  lr=0.0001
+    [Classifier]  48.0%  ep 48/100  loss=0.402428  lr=0.0001
+    [Classifier]  49.0%  ep 49/100  loss=0.398524  lr=0.0001
+    [Classifier]  50.0%  ep 50/100  loss=0.397177  lr=0.0001
+    [Classifier]  51.0%  ep 51/100  loss=0.400214  lr=0.0001
+    [Classifier]  52.0%  ep 52/100  loss=0.398223  lr=0.0001
+    [Classifier]  53.0%  ep 53/100  loss=0.395924  lr=0.0001
+    [Classifier]  54.0%  ep 54/100  loss=0.395426  lr=0.0001
+    [Classifier]  55.0%  ep 55/100  loss=0.395327  lr=0.0001
+    [Classifier]  56.0%  ep 56/100  loss=0.394708  lr=0.0001
+    [Classifier]  57.0%  ep 57/100  loss=0.393920  lr=0.0001
+    [Classifier]  58.0%  ep 58/100  loss=0.391888  lr=0.0001
+    [Classifier]  59.0%  ep 59/100  loss=0.391577  lr=0.0001
+    [Classifier]  60.0%  ep 60/100  loss=0.392631  lr=0.0001
+    [Classifier]  61.0%  ep 61/100  loss=0.389168  lr=0.0001
+    [Classifier]  62.0%  ep 62/100  loss=0.390727  lr=0.0001
+    [Classifier]  63.0%  ep 63/100  loss=0.389287  lr=0.0001
+    [Classifier]  64.0%  ep 64/100  loss=0.389186  lr=0.0001
+    [Classifier]  65.0%  ep 65/100  loss=0.390294  lr=0.0001
+    [Classifier]  66.0%  ep 66/100  loss=0.387121  lr=0.0001
+    [Classifier]  67.0%  ep 67/100  loss=0.388010  lr=0.0001
+    [Classifier]  68.0%  ep 68/100  loss=0.385637  lr=0.0001
+    [Classifier]  69.0%  ep 69/100  loss=0.386553  lr=0.0001
+    [Classifier]  70.0%  ep 70/100  loss=0.387406  lr=0.0001
+    [Classifier]  71.0%  ep 71/100  loss=0.388376  lr=0.0001
+    [Classifier]  72.0%  ep 72/100  loss=0.383264  lr=0.0001
+    [Classifier]  73.0%  ep 73/100  loss=0.385101  lr=0.0001
+    [Classifier]  74.0%  ep 74/100  loss=0.385788  lr=0.0001
+    [Classifier]  75.0%  ep 75/100  loss=0.382869  lr=0.0001
+    [Classifier]  76.0%  ep 76/100  loss=0.384743  lr=0.0001
+    [Classifier]  77.0%  ep 77/100  loss=0.381288  lr=0.0001
+    [Classifier]  78.0%  ep 78/100  loss=0.382190  lr=0.0001
+    [Classifier]  79.0%  ep 79/100  loss=0.383023  lr=0.0001
+    [Classifier]  80.0%  ep 80/100  loss=0.380097  lr=0.0001
+    [Classifier]  81.0%  ep 81/100  loss=0.380839  lr=0.0001
+    [Classifier]  82.0%  ep 82/100  loss=0.380344  lr=0.0001
+    [Classifier]  83.0%  ep 83/100  loss=0.378203  lr=0.0001
+    [Classifier]  84.0%  ep 84/100  loss=0.380120  lr=0.0001
+    [Classifier]  85.0%  ep 85/100  loss=0.380474  lr=0.0001
+    [Classifier]  86.0%  ep 86/100  loss=0.376609  lr=0.0001
+    [Classifier]  87.0%  ep 87/100  loss=0.378920  lr=0.0001
+    [Classifier]  88.0%  ep 88/100  loss=0.377539  lr=0.0001
+    [Classifier]  89.0%  ep 89/100  loss=0.377520  lr=0.0001
+    [Classifier]  90.0%  ep 90/100  loss=0.375829  lr=0.0001
+    [Classifier]  91.0%  ep 91/100  loss=0.377254  lr=0.0001
+    [Classifier]  92.0%  ep 92/100  loss=0.377459  lr=0.0001
+    [Classifier]  93.0%  ep 93/100  loss=0.377676  lr=0.0001
+    [Classifier]  94.0%  ep 94/100  loss=0.374945  lr=0.0001
+    [Classifier]  95.0%  ep 95/100  loss=0.375409  lr=0.0001
+    [Classifier]  96.0%  ep 96/100  loss=0.374036  lr=0.0001
+    [Classifier]  97.0%  ep 97/100  loss=0.371826  lr=0.0001
+    [Classifier]  98.0%  ep 98/100  loss=0.374220  lr=0.0001
+    [Classifier]  99.0%  ep 99/100  loss=0.373837  lr=0.0001
+    [Classifier] 100.0%  ep 100/100  loss=0.372763  lr=0.0001
+    [saved] ckpt_run/ntu60_xsub_shuf2/cil_classifier_task1.pt
+
+────────────────────────────────────────────────────────────
+  TASK 2 — Train classifier
+────────────────────────────────────────────────────────────
+  [Classifier] Extracting features for tasks 1..2 ...
+    [Classifier]   1.0%  ep 1/100  loss=1.784886  lr=0.0001
+    [Classifier]   2.0%  ep 2/100  loss=0.792141  lr=0.0001
+    [Classifier]   3.0%  ep 3/100  loss=0.629347  lr=0.0001
+    [Classifier]   4.0%  ep 4/100  loss=0.565820  lr=0.0001
+    [Classifier]   5.0%  ep 5/100  loss=0.532083  lr=0.0001
+    [Classifier]   6.0%  ep 6/100  loss=0.508688  lr=0.0001
+    [Classifier]   7.0%  ep 7/100  loss=0.492893  lr=0.0001
+    [Classifier]   8.0%  ep 8/100  loss=0.481258  lr=0.0001
+    [Classifier]   9.0%  ep 9/100  loss=0.471550  lr=0.0001
+    [Classifier]  10.0%  ep 10/100  loss=0.463088  lr=0.0001
+    [Classifier]  11.0%  ep 11/100  loss=0.457173  lr=0.0001
+    [Classifier]  12.0%  ep 12/100  loss=0.451887  lr=0.0001
+    [Classifier]  13.0%  ep 13/100  loss=0.446001  lr=0.0001
+    [Classifier]  14.0%  ep 14/100  loss=0.441577  lr=0.0001
+    [Classifier]  15.0%  ep 15/100  loss=0.438951  lr=0.0001
+    [Classifier]  16.0%  ep 16/100  loss=0.435071  lr=0.0001
+    [Classifier]  17.0%  ep 17/100  loss=0.432642  lr=0.0001
+    [Classifier]  18.0%  ep 18/100  loss=0.429038  lr=0.0001
+    [Classifier]  19.0%  ep 19/100  loss=0.426573  lr=0.0001
+    [Classifier]  20.0%  ep 20/100  loss=0.423481  lr=0.0001
+    [Classifier]  21.0%  ep 21/100  loss=0.421932  lr=0.0001
+    [Classifier]  22.0%  ep 22/100  loss=0.419163  lr=0.0001
+    [Classifier]  23.0%  ep 23/100  loss=0.416744  lr=0.0001
+    [Classifier]  24.0%  ep 24/100  loss=0.415025  lr=0.0001
+    [Classifier]  25.0%  ep 25/100  loss=0.413459  lr=0.0001
+    [Classifier]  26.0%  ep 26/100  loss=0.411782  lr=0.0001
+    [Classifier]  27.0%  ep 27/100  loss=0.409761  lr=0.0001
+    [Classifier]  28.0%  ep 28/100  loss=0.408742  lr=0.0001
+    [Classifier]  29.0%  ep 29/100  loss=0.407512  lr=0.0001
+    [Classifier]  30.0%  ep 30/100  loss=0.405970  lr=0.0001
+    [Classifier]  31.0%  ep 31/100  loss=0.404228  lr=0.0001
+    [Classifier]  32.0%  ep 32/100  loss=0.402338  lr=0.0001
+    [Classifier]  33.0%  ep 33/100  loss=0.402070  lr=0.0001
+    [Classifier]  34.0%  ep 34/100  loss=0.400150  lr=0.0001
+    [Classifier]  35.0%  ep 35/100  loss=0.398891  lr=0.0001
+    [Classifier]  36.0%  ep 36/100  loss=0.398056  lr=0.0001
+    [Classifier]  37.0%  ep 37/100  loss=0.397613  lr=0.0001
+    [Classifier]  38.0%  ep 38/100  loss=0.395808  lr=0.0001
+    [Classifier]  39.0%  ep 39/100  loss=0.394801  lr=0.0001
+    [Classifier]  40.0%  ep 40/100  loss=0.393944  lr=0.0001
+    [Classifier]  41.0%  ep 41/100  loss=0.392995  lr=0.0001
+    [Classifier]  42.0%  ep 42/100  loss=0.391241  lr=0.0001
+    [Classifier]  43.0%  ep 43/100  loss=0.390197  lr=0.0001
+    [Classifier]  44.0%  ep 44/100  loss=0.390015  lr=0.0001
+    [Classifier]  45.0%  ep 45/100  loss=0.389704  lr=0.0001
+    [Classifier]  46.0%  ep 46/100  loss=0.389110  lr=0.0001
+    [Classifier]  47.0%  ep 47/100  loss=0.387494  lr=0.0001
+    [Classifier]  48.0%  ep 48/100  loss=0.386974  lr=0.0001
+    [Classifier]  49.0%  ep 49/100  loss=0.386039  lr=0.0001
+    [Classifier]  50.0%  ep 50/100  loss=0.384464  lr=0.0001
+    [Classifier]  51.0%  ep 51/100  loss=0.384931  lr=0.0001
+    [Classifier]  52.0%  ep 52/100  loss=0.383317  lr=0.0001
+    [Classifier]  53.0%  ep 53/100  loss=0.382070  lr=0.0001
+    [Classifier]  54.0%  ep 54/100  loss=0.381770  lr=0.0001
+    [Classifier]  55.0%  ep 55/100  loss=0.380955  lr=0.0001
+    [Classifier]  56.0%  ep 56/100  loss=0.381369  lr=0.0001
+    [Classifier]  57.0%  ep 57/100  loss=0.379932  lr=0.0001
+    [Classifier]  58.0%  ep 58/100  loss=0.379490  lr=0.0001
+    [Classifier]  59.0%  ep 59/100  loss=0.379496  lr=0.0001
+    [Classifier]  60.0%  ep 60/100  loss=0.377725  lr=0.0001
+    [Classifier]  61.0%  ep 61/100  loss=0.377243  lr=0.0001
+    [Classifier]  62.0%  ep 62/100  loss=0.376656  lr=0.0001
+    [Classifier]  63.0%  ep 63/100  loss=0.375717  lr=0.0001
+    [Classifier]  64.0%  ep 64/100  loss=0.375529  lr=0.0001
+    [Classifier]  65.0%  ep 65/100  loss=0.373653  lr=0.0001
+    [Classifier]  66.0%  ep 66/100  loss=0.374700  lr=0.0001
+    [Classifier]  67.0%  ep 67/100  loss=0.373497  lr=0.0001
+    [Classifier]  68.0%  ep 68/100  loss=0.372786  lr=0.0001
+    [Classifier]  69.0%  ep 69/100  loss=0.371776  lr=0.0001
+    [Classifier]  70.0%  ep 70/100  loss=0.371686  lr=0.0001
+    [Classifier]  71.0%  ep 71/100  loss=0.371979  lr=0.0001
+    [Classifier]  72.0%  ep 72/100  loss=0.370548  lr=0.0001
+    [Classifier]  73.0%  ep 73/100  loss=0.370149  lr=0.0001
+    [Classifier]  74.0%  ep 74/100  loss=0.368880  lr=0.0001
+    [Classifier]  75.0%  ep 75/100  loss=0.369731  lr=0.0001
+    [Classifier]  76.0%  ep 76/100  loss=0.367913  lr=0.0001
+    [Classifier]  77.0%  ep 77/100  loss=0.368819  lr=0.0001
+    [Classifier]  78.0%  ep 78/100  loss=0.367159  lr=0.0001
+    [Classifier]  79.0%  ep 79/100  loss=0.367044  lr=0.0001
+    [Classifier]  80.0%  ep 80/100  loss=0.366127  lr=0.0001
+    [Classifier]  81.0%  ep 81/100  loss=0.365395  lr=0.0001
+    [Classifier]  82.0%  ep 82/100  loss=0.366086  lr=0.0001
+    [Classifier]  83.0%  ep 83/100  loss=0.365058  lr=0.0001
+    [Classifier]  84.0%  ep 84/100  loss=0.364271  lr=0.0001
+    [Classifier]  85.0%  ep 85/100  loss=0.363956  lr=0.0001
+    [Classifier]  86.0%  ep 86/100  loss=0.363279  lr=0.0001
+    [Classifier]  87.0%  ep 87/100  loss=0.362433  lr=0.0001
+    [Classifier]  88.0%  ep 88/100  loss=0.362990  lr=0.0001
+    [Classifier]  89.0%  ep 89/100  loss=0.362420  lr=0.0001
+    [Classifier]  90.0%  ep 90/100  loss=0.362074  lr=0.0001
+    [Classifier]  91.0%  ep 91/100  loss=0.361666  lr=0.0001
+    [Classifier]  92.0%  ep 92/100  loss=0.359954  lr=0.0001
+    [Classifier]  93.0%  ep 93/100  loss=0.359710  lr=0.0001
+    [Classifier]  94.0%  ep 94/100  loss=0.360181  lr=0.0001
+    [Classifier]  95.0%  ep 95/100  loss=0.359327  lr=0.0001
+    [Classifier]  96.0%  ep 96/100  loss=0.359108  lr=0.0001
+    [Classifier]  97.0%  ep 97/100  loss=0.358496  lr=0.0001
+    [Classifier]  98.0%  ep 98/100  loss=0.358477  lr=0.0001
+    [Classifier]  99.0%  ep 99/100  loss=0.358016  lr=0.0001
+    [Classifier] 100.0%  ep 100/100  loss=0.358391  lr=0.0001
+    [saved] ckpt_run/ntu60_xsub_shuf2/cil_classifier_task2.pt
+
+────────────────────────────────────────────────────────────
+  TASK 3 — Train classifier
+────────────────────────────────────────────────────────────
+  [Classifier] Extracting features for tasks 1..3 ...
+    [Classifier]   1.0%  ep 1/100  loss=1.873664  lr=0.0001
+    [Classifier]   2.0%  ep 2/100  loss=1.031326  lr=0.0001
+    [Classifier]   3.0%  ep 3/100  loss=0.887240  lr=0.0001
+    [Classifier]   4.0%  ep 4/100  loss=0.820770  lr=0.0001
+    [Classifier]   5.0%  ep 5/100  loss=0.780292  lr=0.0001
+    [Classifier]   6.0%  ep 6/100  loss=0.751150  lr=0.0001
+    [Classifier]   7.0%  ep 7/100  loss=0.729381  lr=0.0001
+    [Classifier]   8.0%  ep 8/100  loss=0.712442  lr=0.0001
+    [Classifier]   9.0%  ep 9/100  loss=0.697954  lr=0.0001
+    [Classifier]  10.0%  ep 10/100  loss=0.686111  lr=0.0001
+    [Classifier]  11.0%  ep 11/100  loss=0.676456  lr=0.0001
+    [Classifier]  12.0%  ep 12/100  loss=0.665677  lr=0.0001
+    [Classifier]  13.0%  ep 13/100  loss=0.657298  lr=0.0001
+    [Classifier]  14.0%  ep 14/100  loss=0.650253  lr=0.0001
+    [Classifier]  15.0%  ep 15/100  loss=0.642312  lr=0.0001
+    [Classifier]  16.0%  ep 16/100  loss=0.637256  lr=0.0001
+    [Classifier]  17.0%  ep 17/100  loss=0.631046  lr=0.0001
+    [Classifier]  18.0%  ep 18/100  loss=0.624127  lr=0.0001
+    [Classifier]  19.0%  ep 19/100  loss=0.619136  lr=0.0001
+    [Classifier]  20.0%  ep 20/100  loss=0.615679  lr=0.0001
+    [Classifier]  21.0%  ep 21/100  loss=0.609433  lr=0.0001
+    [Classifier]  22.0%  ep 22/100  loss=0.605943  lr=0.0001
+    [Classifier]  23.0%  ep 23/100  loss=0.601083  lr=0.0001
+    [Classifier]  24.0%  ep 24/100  loss=0.597351  lr=0.0001
+    [Classifier]  25.0%  ep 25/100  loss=0.593008  lr=0.0001
+    [Classifier]  26.0%  ep 26/100  loss=0.589902  lr=0.0001
+    [Classifier]  27.0%  ep 27/100  loss=0.585952  lr=0.0001
+    [Classifier]  28.0%  ep 28/100  loss=0.582872  lr=0.0001
+    [Classifier]  29.0%  ep 29/100  loss=0.580082  lr=0.0001
+    [Classifier]  30.0%  ep 30/100  loss=0.576905  lr=0.0001
+    [Classifier]  31.0%  ep 31/100  loss=0.573790  lr=0.0001
+    [Classifier]  32.0%  ep 32/100  loss=0.571460  lr=0.0001
+    [Classifier]  33.0%  ep 33/100  loss=0.567484  lr=0.0001
+    [Classifier]  34.0%  ep 34/100  loss=0.565444  lr=0.0001
+    [Classifier]  35.0%  ep 35/100  loss=0.562896  lr=0.0001
+    [Classifier]  36.0%  ep 36/100  loss=0.560536  lr=0.0001
+    [Classifier]  37.0%  ep 37/100  loss=0.558070  lr=0.0001
+    [Classifier]  38.0%  ep 38/100  loss=0.555579  lr=0.0001
+    [Classifier]  39.0%  ep 39/100  loss=0.553167  lr=0.0001
+    [Classifier]  40.0%  ep 40/100  loss=0.550413  lr=0.0001
+    [Classifier]  41.0%  ep 41/100  loss=0.548754  lr=0.0001
+    [Classifier]  42.0%  ep 42/100  loss=0.546650  lr=0.0001
+    [Classifier]  43.0%  ep 43/100  loss=0.543938  lr=0.0001
+    [Classifier]  44.0%  ep 44/100  loss=0.542628  lr=0.0001
+    [Classifier]  45.0%  ep 45/100  loss=0.541070  lr=0.0001
+    [Classifier]  46.0%  ep 46/100  loss=0.538633  lr=0.0001
+    [Classifier]  47.0%  ep 47/100  loss=0.536545  lr=0.0001
+    [Classifier]  48.0%  ep 48/100  loss=0.534916  lr=0.0001
+    [Classifier]  49.0%  ep 49/100  loss=0.534120  lr=0.0001
+    [Classifier]  50.0%  ep 50/100  loss=0.531795  lr=0.0001
+    [Classifier]  51.0%  ep 51/100  loss=0.529377  lr=0.0001
+    [Classifier]  52.0%  ep 52/100  loss=0.528635  lr=0.0001
+    [Classifier]  53.0%  ep 53/100  loss=0.525565  lr=0.0001
+    [Classifier]  54.0%  ep 54/100  loss=0.524241  lr=0.0001
+    [Classifier]  55.0%  ep 55/100  loss=0.522942  lr=0.0001
+    [Classifier]  56.0%  ep 56/100  loss=0.521752  lr=0.0001
+    [Classifier]  57.0%  ep 57/100  loss=0.519566  lr=0.0001
+    [Classifier]  58.0%  ep 58/100  loss=0.517934  lr=0.0001
+    [Classifier]  59.0%  ep 59/100  loss=0.516727  lr=0.0001
+    [Classifier]  60.0%  ep 60/100  loss=0.514294  lr=0.0001
+    [Classifier]  61.0%  ep 61/100  loss=0.514162  lr=0.0001
+    [Classifier]  62.0%  ep 62/100  loss=0.512610  lr=0.0001
+    [Classifier]  63.0%  ep 63/100  loss=0.511125  lr=0.0001
+    [Classifier]  64.0%  ep 64/100  loss=0.509606  lr=0.0001
+    [Classifier]  65.0%  ep 65/100  loss=0.509461  lr=0.0001
+    [Classifier]  66.0%  ep 66/100  loss=0.508059  lr=0.0001
+    [Classifier]  67.0%  ep 67/100  loss=0.506305  lr=0.0001
+    [Classifier]  68.0%  ep 68/100  loss=0.505161  lr=0.0001
+    [Classifier]  69.0%  ep 69/100  loss=0.503978  lr=0.0001
+    [Classifier]  70.0%  ep 70/100  loss=0.503443  lr=0.0001
+    [Classifier]  71.0%  ep 71/100  loss=0.502002  lr=0.0001
+    [Classifier]  72.0%  ep 72/100  loss=0.499823  lr=0.0001
+    [Classifier]  73.0%  ep 73/100  loss=0.499246  lr=0.0001
+    [Classifier]  74.0%  ep 74/100  loss=0.498035  lr=0.0001
+    [Classifier]  75.0%  ep 75/100  loss=0.497692  lr=0.0001
+    [Classifier]  76.0%  ep 76/100  loss=0.495073  lr=0.0001
+    [Classifier]  77.0%  ep 77/100  loss=0.494180  lr=0.0001
+    [Classifier]  78.0%  ep 78/100  loss=0.493350  lr=0.0001
+    [Classifier]  79.0%  ep 79/100  loss=0.493123  lr=0.0001
+    [Classifier]  80.0%  ep 80/100  loss=0.491481  lr=0.0001
+    [Classifier]  81.0%  ep 81/100  loss=0.489885  lr=0.0001
+    [Classifier]  82.0%  ep 82/100  loss=0.489264  lr=0.0001
+    [Classifier]  83.0%  ep 83/100  loss=0.488083  lr=0.0001
+    [Classifier]  84.0%  ep 84/100  loss=0.486872  lr=0.0001
+    [Classifier]  85.0%  ep 85/100  loss=0.486677  lr=0.0001
+    [Classifier]  86.0%  ep 86/100  loss=0.485774  lr=0.0001
+    [Classifier]  87.0%  ep 87/100  loss=0.484424  lr=0.0001
+    [Classifier]  88.0%  ep 88/100  loss=0.482880  lr=0.0001
+    [Classifier]  89.0%  ep 89/100  loss=0.483099  lr=0.0001
+    [Classifier]  90.0%  ep 90/100  loss=0.482217  lr=0.0001
+    [Classifier]  91.0%  ep 91/100  loss=0.480213  lr=0.0001
+    [Classifier]  92.0%  ep 92/100  loss=0.480130  lr=0.0001
+    [Classifier]  93.0%  ep 93/100  loss=0.478747  lr=0.0001
+    [Classifier]  94.0%  ep 94/100  loss=0.478314  lr=0.0001
+    [Classifier]  95.0%  ep 95/100  loss=0.477089  lr=0.0001
+    [Classifier]  96.0%  ep 96/100  loss=0.476460  lr=0.0001
+    [Classifier]  97.0%  ep 97/100  loss=0.475492  lr=0.0001
+    [Classifier]  98.0%  ep 98/100  loss=0.474768  lr=0.0001
+    [Classifier]  99.0%  ep 99/100  loss=0.473848  lr=0.0001
+    [Classifier] 100.0%  ep 100/100  loss=0.472848  lr=0.0001
+    [saved] ckpt_run/ntu60_xsub_shuf2/cil_classifier_task3.pt
+
+────────────────────────────────────────────────────────────
+  TASK 4 — Train classifier
+────────────────────────────────────────────────────────────
+  [Classifier] Extracting features for tasks 1..4 ...
+    [Classifier]   1.0%  ep 1/100  loss=1.885408  lr=0.0001
+    [Classifier]   2.0%  ep 2/100  loss=1.119254  lr=0.0001
+    [Classifier]   3.0%  ep 3/100  loss=0.994903  lr=0.0001
+    [Classifier]   4.0%  ep 4/100  loss=0.934079  lr=0.0001
+    [Classifier]   5.0%  ep 5/100  loss=0.896952  lr=0.0001
+    [Classifier]   6.0%  ep 6/100  loss=0.868492  lr=0.0001
+    [Classifier]   7.0%  ep 7/100  loss=0.846300  lr=0.0001
+    [Classifier]   8.0%  ep 8/100  loss=0.829528  lr=0.0001
+    [Classifier]   9.0%  ep 9/100  loss=0.812215  lr=0.0001
+    [Classifier]  10.0%  ep 10/100  loss=0.799311  lr=0.0001
+    [Classifier]  11.0%  ep 11/100  loss=0.786605  lr=0.0001
+    [Classifier]  12.0%  ep 12/100  loss=0.777124  lr=0.0001
+    [Classifier]  13.0%  ep 13/100  loss=0.766065  lr=0.0001
+    [Classifier]  14.0%  ep 14/100  loss=0.757484  lr=0.0001
+    [Classifier]  15.0%  ep 15/100  loss=0.750134  lr=0.0001
+    [Classifier]  16.0%  ep 16/100  loss=0.740921  lr=0.0001
+    [Classifier]  17.0%  ep 17/100  loss=0.734912  lr=0.0001
+    [Classifier]  18.0%  ep 18/100  loss=0.728507  lr=0.0001
+    [Classifier]  19.0%  ep 19/100  loss=0.721734  lr=0.0001
+    [Classifier]  20.0%  ep 20/100  loss=0.715051  lr=0.0001
+    [Classifier]  21.0%  ep 21/100  loss=0.709796  lr=0.0001
+    [Classifier]  22.0%  ep 22/100  loss=0.703880  lr=0.0001
+    [Classifier]  23.0%  ep 23/100  loss=0.698573  lr=0.0001
+    [Classifier]  24.0%  ep 24/100  loss=0.694208  lr=0.0001
+    [Classifier]  25.0%  ep 25/100  loss=0.690075  lr=0.0001
+    [Classifier]  26.0%  ep 26/100  loss=0.684255  lr=0.0001
+    [Classifier]  27.0%  ep 27/100  loss=0.680112  lr=0.0001
+    [Classifier]  28.0%  ep 28/100  loss=0.676429  lr=0.0001
+    [Classifier]  29.0%  ep 29/100  loss=0.672161  lr=0.0001
+    [Classifier]  30.0%  ep 30/100  loss=0.668795  lr=0.0001
+    [Classifier]  31.0%  ep 31/100  loss=0.663404  lr=0.0001
+    [Classifier]  32.0%  ep 32/100  loss=0.660148  lr=0.0001
+    [Classifier]  33.0%  ep 33/100  loss=0.657664  lr=0.0001
+    [Classifier]  34.0%  ep 34/100  loss=0.653131  lr=0.0001
+    [Classifier]  35.0%  ep 35/100  loss=0.651132  lr=0.0001
+    [Classifier]  36.0%  ep 36/100  loss=0.647892  lr=0.0001
+    [Classifier]  37.0%  ep 37/100  loss=0.645122  lr=0.0001
+    [Classifier]  38.0%  ep 38/100  loss=0.641620  lr=0.0001
+    [Classifier]  39.0%  ep 39/100  loss=0.638210  lr=0.0001
+    [Classifier]  40.0%  ep 40/100  loss=0.636150  lr=0.0001
+    [Classifier]  41.0%  ep 41/100  loss=0.633600  lr=0.0001
+    [Classifier]  42.0%  ep 42/100  loss=0.630297  lr=0.0001
+    [Classifier]  43.0%  ep 43/100  loss=0.627508  lr=0.0001
+    [Classifier]  44.0%  ep 44/100  loss=0.625315  lr=0.0001
+    [Classifier]  45.0%  ep 45/100  loss=0.623470  lr=0.0001
+    [Classifier]  46.0%  ep 46/100  loss=0.621163  lr=0.0001
+    [Classifier]  47.0%  ep 47/100  loss=0.618532  lr=0.0001
+    [Classifier]  48.0%  ep 48/100  loss=0.616763  lr=0.0001
+    [Classifier]  49.0%  ep 49/100  loss=0.614328  lr=0.0001
+    [Classifier]  50.0%  ep 50/100  loss=0.611386  lr=0.0001
+    [Classifier]  51.0%  ep 51/100  loss=0.609508  lr=0.0001
+    [Classifier]  52.0%  ep 52/100  loss=0.607249  lr=0.0001
+    [Classifier]  53.0%  ep 53/100  loss=0.604524  lr=0.0001
+    [Classifier]  54.0%  ep 54/100  loss=0.603993  lr=0.0001
+    [Classifier]  55.0%  ep 55/100  loss=0.602295  lr=0.0001
+    [Classifier]  56.0%  ep 56/100  loss=0.599627  lr=0.0001
+    [Classifier]  57.0%  ep 57/100  loss=0.598230  lr=0.0001
+    [Classifier]  58.0%  ep 58/100  loss=0.594362  lr=0.0001
+    [Classifier]  59.0%  ep 59/100  loss=0.592992  lr=0.0001
+    [Classifier]  60.0%  ep 60/100  loss=0.594032  lr=0.0001
+    [Classifier]  61.0%  ep 61/100  loss=0.589922  lr=0.0001
+    [Classifier]  62.0%  ep 62/100  loss=0.589317  lr=0.0001
+    [Classifier]  63.0%  ep 63/100  loss=0.586819  lr=0.0001
+    [Classifier]  64.0%  ep 64/100  loss=0.585171  lr=0.0001
+    [Classifier]  65.0%  ep 65/100  loss=0.584025  lr=0.0001
+    [Classifier]  66.0%  ep 66/100  loss=0.582126  lr=0.0001
+    [Classifier]  67.0%  ep 67/100  loss=0.580917  lr=0.0001
+    [Classifier]  68.0%  ep 68/100  loss=0.579116  lr=0.0001
+    [Classifier]  69.0%  ep 69/100  loss=0.577838  lr=0.0001
+    [Classifier]  70.0%  ep 70/100  loss=0.576285  lr=0.0001
+    [Classifier]  71.0%  ep 71/100  loss=0.574681  lr=0.0001
+    [Classifier]  72.0%  ep 72/100  loss=0.573624  lr=0.0001
+    [Classifier]  73.0%  ep 73/100  loss=0.571897  lr=0.0001
+    [Classifier]  74.0%  ep 74/100  loss=0.570656  lr=0.0001
+    [Classifier]  75.0%  ep 75/100  loss=0.568538  lr=0.0001
+    [Classifier]  76.0%  ep 76/100  loss=0.568149  lr=0.0001
+    [Classifier]  77.0%  ep 77/100  loss=0.566042  lr=0.0001
+    [Classifier]  78.0%  ep 78/100  loss=0.564568  lr=0.0001
+    [Classifier]  79.0%  ep 79/100  loss=0.564252  lr=0.0001
+    [Classifier]  80.0%  ep 80/100  loss=0.562805  lr=0.0001
+    [Classifier]  81.0%  ep 81/100  loss=0.562823  lr=0.0001
+    [Classifier]  82.0%  ep 82/100  loss=0.559333  lr=0.0001
+    [Classifier]  83.0%  ep 83/100  loss=0.558069  lr=0.0001
+    [Classifier]  84.0%  ep 84/100  loss=0.557561  lr=0.0001
+    [Classifier]  85.0%  ep 85/100  loss=0.557463  lr=0.0001
+    [Classifier]  86.0%  ep 86/100  loss=0.554951  lr=0.0001
+    [Classifier]  87.0%  ep 87/100  loss=0.554187  lr=0.0001
+    [Classifier]  88.0%  ep 88/100  loss=0.551895  lr=0.0001
+    [Classifier]  89.0%  ep 89/100  loss=0.551858  lr=0.0001
+    [Classifier]  90.0%  ep 90/100  loss=0.550221  lr=0.0001
+    [Classifier]  91.0%  ep 91/100  loss=0.549229  lr=0.0001
+    [Classifier]  92.0%  ep 92/100  loss=0.548299  lr=0.0001
+    [Classifier]  93.0%  ep 93/100  loss=0.546750  lr=0.0001
+    [Classifier]  94.0%  ep 94/100  loss=0.546051  lr=0.0001
+    [Classifier]  95.0%  ep 95/100  loss=0.545983  lr=0.0001
+    [Classifier]  96.0%  ep 96/100  loss=0.544034  lr=0.0001
+    [Classifier]  97.0%  ep 97/100  loss=0.543868  lr=0.0001
+    [Classifier]  98.0%  ep 98/100  loss=0.544053  lr=0.0001
+    [Classifier]  99.0%  ep 99/100  loss=0.541111  lr=0.0001
+    [Classifier] 100.0%  ep 100/100  loss=0.540072  lr=0.0001
+    [saved] ckpt_run/ntu60_xsub_shuf2/cil_classifier_task4.pt
+
+────────────────────────────────────────────────────────────
+  TASK 5 — Train classifier
+────────────────────────────────────────────────────────────
+  [Classifier] Extracting features for tasks 1..5 ...
+    [Classifier]   1.0%  ep 1/100  loss=1.908903  lr=0.0001
+    [Classifier]   2.0%  ep 2/100  loss=1.159790  lr=0.0001
+    [Classifier]   3.0%  ep 3/100  loss=1.043217  lr=0.0001
+    [Classifier]   4.0%  ep 4/100  loss=0.985406  lr=0.0001
+    [Classifier]   5.0%  ep 5/100  loss=0.948488  lr=0.0001
+    [Classifier]   6.0%  ep 6/100  loss=0.920883  lr=0.0001
+    [Classifier]   7.0%  ep 7/100  loss=0.900178  lr=0.0001
+    [Classifier]   8.0%  ep 8/100  loss=0.882805  lr=0.0001
+    [Classifier]   9.0%  ep 9/100  loss=0.867811  lr=0.0001
+    [Classifier]  10.0%  ep 10/100  loss=0.855505  lr=0.0001
+    [Classifier]  11.0%  ep 11/100  loss=0.843894  lr=0.0001
+    [Classifier]  12.0%  ep 12/100  loss=0.834614  lr=0.0001
+    [Classifier]  13.0%  ep 13/100  loss=0.824267  lr=0.0001
+    [Classifier]  14.0%  ep 14/100  loss=0.817596  lr=0.0001
+    [Classifier]  15.0%  ep 15/100  loss=0.809037  lr=0.0001
+    [Classifier]  16.0%  ep 16/100  loss=0.801912  lr=0.0001
+    [Classifier]  17.0%  ep 17/100  loss=0.794719  lr=0.0001
+    [Classifier]  18.0%  ep 18/100  loss=0.788592  lr=0.0001
+    [Classifier]  19.0%  ep 19/100  loss=0.781860  lr=0.0001
+    [Classifier]  20.0%  ep 20/100  loss=0.776022  lr=0.0001
+    [Classifier]  21.0%  ep 21/100  loss=0.772503  lr=0.0001
+    [Classifier]  22.0%  ep 22/100  loss=0.766728  lr=0.0001
+    [Classifier]  23.0%  ep 23/100  loss=0.761485  lr=0.0001
+    [Classifier]  24.0%  ep 24/100  loss=0.758259  lr=0.0001
+    [Classifier]  25.0%  ep 25/100  loss=0.752313  lr=0.0001
+    [Classifier]  26.0%  ep 26/100  loss=0.748416  lr=0.0001
+    [Classifier]  27.0%  ep 27/100  loss=0.744009  lr=0.0001
+    [Classifier]  28.0%  ep 28/100  loss=0.739352  lr=0.0001
+    [Classifier]  29.0%  ep 29/100  loss=0.736136  lr=0.0001
+    [Classifier]  30.0%  ep 30/100  loss=0.732532  lr=0.0001
+    [Classifier]  31.0%  ep 31/100  loss=0.728347  lr=0.0001
+    [Classifier]  32.0%  ep 32/100  loss=0.726025  lr=0.0001
+    [Classifier]  33.0%  ep 33/100  loss=0.722081  lr=0.0001
+    [Classifier]  34.0%  ep 34/100  loss=0.718443  lr=0.0001
+    [Classifier]  35.0%  ep 35/100  loss=0.715733  lr=0.0001
+    [Classifier]  36.0%  ep 36/100  loss=0.713946  lr=0.0001
+    [Classifier]  37.0%  ep 37/100  loss=0.709428  lr=0.0001
+    [Classifier]  38.0%  ep 38/100  loss=0.707039  lr=0.0001
+    [Classifier]  39.0%  ep 39/100  loss=0.703877  lr=0.0001
+    [Classifier]  40.0%  ep 40/100  loss=0.701013  lr=0.0001
+    [Classifier]  41.0%  ep 41/100  loss=0.698958  lr=0.0001
+    [Classifier]  42.0%  ep 42/100  loss=0.695664  lr=0.0001
+    [Classifier]  43.0%  ep 43/100  loss=0.694503  lr=0.0001
+    [Classifier]  44.0%  ep 44/100  loss=0.691027  lr=0.0001
+    [Classifier]  45.0%  ep 45/100  loss=0.688385  lr=0.0001
+    [Classifier]  46.0%  ep 46/100  loss=0.686899  lr=0.0001
+    [Classifier]  47.0%  ep 47/100  loss=0.684752  lr=0.0001
+    [Classifier]  48.0%  ep 48/100  loss=0.680821  lr=0.0001
+    [Classifier]  49.0%  ep 49/100  loss=0.679168  lr=0.0001
+    [Classifier]  50.0%  ep 50/100  loss=0.676771  lr=0.0001
+    [Classifier]  51.0%  ep 51/100  loss=0.675530  lr=0.0001
+    [Classifier]  52.0%  ep 52/100  loss=0.674239  lr=0.0001
+    [Classifier]  53.0%  ep 53/100  loss=0.671238  lr=0.0001
+    [Classifier]  54.0%  ep 54/100  loss=0.668547  lr=0.0001
+    [Classifier]  55.0%  ep 55/100  loss=0.667771  lr=0.0001
+    [Classifier]  56.0%  ep 56/100  loss=0.664873  lr=0.0001
+    [Classifier]  57.0%  ep 57/100  loss=0.663068  lr=0.0001
+    [Classifier]  58.0%  ep 58/100  loss=0.662305  lr=0.0001
+    [Classifier]  59.0%  ep 59/100  loss=0.660280  lr=0.0001
+    [Classifier]  60.0%  ep 60/100  loss=0.657744  lr=0.0001
+    [Classifier]  61.0%  ep 61/100  loss=0.656600  lr=0.0001
+    [Classifier]  62.0%  ep 62/100  loss=0.654774  lr=0.0001
+    [Classifier]  63.0%  ep 63/100  loss=0.653211  lr=0.0001
+    [Classifier]  64.0%  ep 64/100  loss=0.651391  lr=0.0001
+    [Classifier]  65.0%  ep 65/100  loss=0.649840  lr=0.0001
+    [Classifier]  66.0%  ep 66/100  loss=0.647238  lr=0.0001
+    [Classifier]  67.0%  ep 67/100  loss=0.646086  lr=0.0001
+    [Classifier]  68.0%  ep 68/100  loss=0.645736  lr=0.0001
+    [Classifier]  69.0%  ep 69/100  loss=0.643052  lr=0.0001
+    [Classifier]  70.0%  ep 70/100  loss=0.641288  lr=0.0001
+    [Classifier]  71.0%  ep 71/100  loss=0.640470  lr=0.0001
+    [Classifier]  72.0%  ep 72/100  loss=0.639171  lr=0.0001
+    [Classifier]  73.0%  ep 73/100  loss=0.637311  lr=0.0001
+    [Classifier]  74.0%  ep 74/100  loss=0.636486  lr=0.0001
+    [Classifier]  75.0%  ep 75/100  loss=0.635341  lr=0.0001
+    [Classifier]  76.0%  ep 76/100  loss=0.633738  lr=0.0001
+    [Classifier]  77.0%  ep 77/100  loss=0.632071  lr=0.0001
+    [Classifier]  78.0%  ep 78/100  loss=0.630405  lr=0.0001
+    [Classifier]  79.0%  ep 79/100  loss=0.629239  lr=0.0001
+    [Classifier]  80.0%  ep 80/100  loss=0.628715  lr=0.0001
+    [Classifier]  81.0%  ep 81/100  loss=0.626637  lr=0.0001
+    [Classifier]  82.0%  ep 82/100  loss=0.625056  lr=0.0001
+    [Classifier]  83.0%  ep 83/100  loss=0.625063  lr=0.0001
+    [Classifier]  84.0%  ep 84/100  loss=0.624156  lr=0.0001
+    [Classifier]  85.0%  ep 85/100  loss=0.622230  lr=0.0001
+    [Classifier]  86.0%  ep 86/100  loss=0.620781  lr=0.0001
+    [Classifier]  87.0%  ep 87/100  loss=0.619443  lr=0.0001
+    [Classifier]  88.0%  ep 88/100  loss=0.617819  lr=0.0001
+    [Classifier]  89.0%  ep 89/100  loss=0.616899  lr=0.0001
+    [Classifier]  90.0%  ep 90/100  loss=0.615355  lr=0.0001
+    [Classifier]  91.0%  ep 91/100  loss=0.615280  lr=0.0001
+    [Classifier]  92.0%  ep 92/100  loss=0.612990  lr=0.0001
+    [Classifier]  93.0%  ep 93/100  loss=0.612467  lr=0.0001
+    [Classifier]  94.0%  ep 94/100  loss=0.611728  lr=0.0001
+    [Classifier]  95.0%  ep 95/100  loss=0.611500  lr=0.0001
+    [Classifier]  96.0%  ep 96/100  loss=0.610718  lr=0.0001
+    [Classifier]  97.0%  ep 97/100  loss=0.608562  lr=0.0001
+    [Classifier]  98.0%  ep 98/100  loss=0.607522  lr=0.0001
+    [Classifier]  99.0%  ep 99/100  loss=0.606324  lr=0.0001
+    [Classifier] 100.0%  ep 100/100  loss=0.605324  lr=0.0001
+    [saved] ckpt_run/ntu60_xsub_shuf2/cil_classifier_task5.pt
+
+────────────────────────────────────────────────────────────
+  TASK 6 — Train classifier
+────────────────────────────────────────────────────────────
+  [Classifier] Extracting features for tasks 1..6 ...
+    [Classifier]   1.0%  ep 1/100  loss=2.232210  lr=0.0001
+    [Classifier]   2.0%  ep 2/100  loss=1.469946  lr=0.0001
+    [Classifier]   3.0%  ep 3/100  loss=1.345959  lr=0.0001
+    [Classifier]   4.0%  ep 4/100  loss=1.285484  lr=0.0001
+    [Classifier]   5.0%  ep 5/100  loss=1.247793  lr=0.0001
+    [Classifier]   6.0%  ep 6/100  loss=1.219267  lr=0.0001
+    [Classifier]   7.0%  ep 7/100  loss=1.195872  lr=0.0001
+    [Classifier]   8.0%  ep 8/100  loss=1.175544  lr=0.0001
+    [Classifier]   9.0%  ep 9/100  loss=1.159536  lr=0.0001
+    [Classifier]  10.0%  ep 10/100  loss=1.145621  lr=0.0001
+    [Classifier]  11.0%  ep 11/100  loss=1.131933  lr=0.0001
+    [Classifier]  12.0%  ep 12/100  loss=1.119830  lr=0.0001
+    [Classifier]  13.0%  ep 13/100  loss=1.109870  lr=0.0001
+    [Classifier]  14.0%  ep 14/100  loss=1.099953  lr=0.0001
+    [Classifier]  15.0%  ep 15/100  loss=1.090466  lr=0.0001
+    [Classifier]  16.0%  ep 16/100  loss=1.081386  lr=0.0001
+    [Classifier]  17.0%  ep 17/100  loss=1.073669  lr=0.0001
+    [Classifier]  18.0%  ep 18/100  loss=1.066190  lr=0.0001
+    [Classifier]  19.0%  ep 19/100  loss=1.058422  lr=0.0001
+    [Classifier]  20.0%  ep 20/100  loss=1.051207  lr=0.0001
+    [Classifier]  21.0%  ep 21/100  loss=1.043976  lr=0.0001
+    [Classifier]  22.0%  ep 22/100  loss=1.039344  lr=0.0001
+    [Classifier]  23.0%  ep 23/100  loss=1.031613  lr=0.0001
+    [Classifier]  24.0%  ep 24/100  loss=1.026362  lr=0.0001
+    [Classifier]  25.0%  ep 25/100  loss=1.020812  lr=0.0001
+    [Classifier]  26.0%  ep 26/100  loss=1.016081  lr=0.0001
+    [Classifier]  27.0%  ep 27/100  loss=1.010654  lr=0.0001
+    [Classifier]  28.0%  ep 28/100  loss=1.005343  lr=0.0001
+    [Classifier]  29.0%  ep 29/100  loss=1.001709  lr=0.0001
+    [Classifier]  30.0%  ep 30/100  loss=0.996485  lr=0.0001
+    [Classifier]  31.0%  ep 31/100  loss=0.991557  lr=0.0001
+    [Classifier]  32.0%  ep 32/100  loss=0.987363  lr=0.0001
+    [Classifier]  33.0%  ep 33/100  loss=0.982857  lr=0.0001
+    [Classifier]  34.0%  ep 34/100  loss=0.979463  lr=0.0001
+    [Classifier]  35.0%  ep 35/100  loss=0.975938  lr=0.0001
+    [Classifier]  36.0%  ep 36/100  loss=0.971507  lr=0.0001
+    [Classifier]  37.0%  ep 37/100  loss=0.967611  lr=0.0001
+    [Classifier]  38.0%  ep 38/100  loss=0.965095  lr=0.0001
+    [Classifier]  39.0%  ep 39/100  loss=0.961304  lr=0.0001
+    [Classifier]  40.0%  ep 40/100  loss=0.959255  lr=0.0001
+    [Classifier]  41.0%  ep 41/100  loss=0.953076  lr=0.0001
+    [Classifier]  42.0%  ep 42/100  loss=0.951180  lr=0.0001
+    [Classifier]  43.0%  ep 43/100  loss=0.947193  lr=0.0001
+    [Classifier]  44.0%  ep 44/100  loss=0.945818  lr=0.0001
+    [Classifier]  45.0%  ep 45/100  loss=0.942282  lr=0.0001
+    [Classifier]  46.0%  ep 46/100  loss=0.938174  lr=0.0001
+    [Classifier]  47.0%  ep 47/100  loss=0.935739  lr=0.0001
+    [Classifier]  48.0%  ep 48/100  loss=0.933175  lr=0.0001
+    [Classifier]  49.0%  ep 49/100  loss=0.930455  lr=0.0001
+    [Classifier]  50.0%  ep 50/100  loss=0.927519  lr=0.0001
+    [Classifier]  51.0%  ep 51/100  loss=0.925788  lr=0.0001
+    [Classifier]  52.0%  ep 52/100  loss=0.923850  lr=0.0001
+    [Classifier]  53.0%  ep 53/100  loss=0.920587  lr=0.0001
+    [Classifier]  54.0%  ep 54/100  loss=0.918284  lr=0.0001
+    [Classifier]  55.0%  ep 55/100  loss=0.916151  lr=0.0001
+    [Classifier]  56.0%  ep 56/100  loss=0.913084  lr=0.0001
+    [Classifier]  57.0%  ep 57/100  loss=0.909916  lr=0.0001
+    [Classifier]  58.0%  ep 58/100  loss=0.907971  lr=0.0001
+    [Classifier]  59.0%  ep 59/100  loss=0.905747  lr=0.0001
+    [Classifier]  60.0%  ep 60/100  loss=0.904620  lr=0.0001
+    [Classifier]  61.0%  ep 61/100  loss=0.902369  lr=0.0001
+    [Classifier]  62.0%  ep 62/100  loss=0.899327  lr=0.0001
+    [Classifier]  63.0%  ep 63/100  loss=0.897824  lr=0.0001
+    [Classifier]  64.0%  ep 64/100  loss=0.895030  lr=0.0001
+    [Classifier]  65.0%  ep 65/100  loss=0.893712  lr=0.0001
+    [Classifier]  66.0%  ep 66/100  loss=0.891617  lr=0.0001
+    [Classifier]  67.0%  ep 67/100  loss=0.889444  lr=0.0001
+    [Classifier]  68.0%  ep 68/100  loss=0.887248  lr=0.0001
+    [Classifier]  69.0%  ep 69/100  loss=0.884877  lr=0.0001
+    [Classifier]  70.0%  ep 70/100  loss=0.883161  lr=0.0001
+    [Classifier]  71.0%  ep 71/100  loss=0.881392  lr=0.0001
+    [Classifier]  72.0%  ep 72/100  loss=0.879852  lr=0.0001
+    [Classifier]  73.0%  ep 73/100  loss=0.877562  lr=0.0001
+    [Classifier]  74.0%  ep 74/100  loss=0.875998  lr=0.0001
+    [Classifier]  75.0%  ep 75/100  loss=0.874581  lr=0.0001
+    [Classifier]  76.0%  ep 76/100  loss=0.872060  lr=0.0001
+    [Classifier]  77.0%  ep 77/100  loss=0.870552  lr=0.0001
+    [Classifier]  78.0%  ep 78/100  loss=0.869160  lr=0.0001
+    [Classifier]  79.0%  ep 79/100  loss=0.868360  lr=0.0001
+    [Classifier]  80.0%  ep 80/100  loss=0.867182  lr=0.0001
+    [Classifier]  81.0%  ep 81/100  loss=0.864598  lr=0.0001
+    [Classifier]  82.0%  ep 82/100  loss=0.864198  lr=0.0001
+    [Classifier]  83.0%  ep 83/100  loss=0.861057  lr=0.0001
+    [Classifier]  84.0%  ep 84/100  loss=0.860114  lr=0.0001
+    [Classifier]  85.0%  ep 85/100  loss=0.858351  lr=0.0001
+    [Classifier]  86.0%  ep 86/100  loss=0.856791  lr=0.0001
+    [Classifier]  87.0%  ep 87/100  loss=0.855318  lr=0.0001
+    [Classifier]  88.0%  ep 88/100  loss=0.853422  lr=0.0001
+    [Classifier]  89.0%  ep 89/100  loss=0.852798  lr=0.0001
+    [Classifier]  90.0%  ep 90/100  loss=0.851538  lr=0.0001
+    [Classifier]  91.0%  ep 91/100  loss=0.849496  lr=0.0001
+    [Classifier]  92.0%  ep 92/100  loss=0.848071  lr=0.0001
+    [Classifier]  93.0%  ep 93/100  loss=0.847640  lr=0.0001
+    [Classifier]  94.0%  ep 94/100  loss=0.845697  lr=0.0001
+    [Classifier]  95.0%  ep 95/100  loss=0.844404  lr=0.0001
+    [Classifier]  96.0%  ep 96/100  loss=0.842830  lr=0.0001
+    [Classifier]  97.0%  ep 97/100  loss=0.841150  lr=0.0001
+    [Classifier]  98.0%  ep 98/100  loss=0.840360  lr=0.0001
+    [Classifier]  99.0%  ep 99/100  loss=0.838444  lr=0.0001
+    [Classifier] 100.0%  ep 100/100  loss=0.837528  lr=0.0001
+    [saved] ckpt_run/ntu60_xsub_shuf2/cil_classifier_task6.pt
+
+============================================================
+  PHASE 3 — Evaluate CIL Classifiers  [LINEAR on frozen z_task]
+============================================================
+
+────────────────────────────────────────────────────────────
+  TASK 1 — Evaluate classifier
+────────────────────────────────────────────────────────────
+  [Linear] After task 1: 81.54%
+
+────────────────────────────────────────────────────────────
+  TASK 2 — Evaluate classifier
+────────────────────────────────────────────────────────────
+  [Linear] After task 2: 82.32%
+
+────────────────────────────────────────────────────────────
+  TASK 3 — Evaluate classifier
+────────────────────────────────────────────────────────────
+  [Linear] After task 3: 75.74%
+
+────────────────────────────────────────────────────────────
+  TASK 4 — Evaluate classifier
+────────────────────────────────────────────────────────────
+  [Linear] After task 4: 73.92%
+
+────────────────────────────────────────────────────────────
+  TASK 5 — Evaluate classifier
+────────────────────────────────────────────────────────────
+  [Linear] After task 5: 72.52%
+
+────────────────────────────────────────────────────────────
+  TASK 6 — Evaluate classifier
+────────────────────────────────────────────────────────────
+  [Linear] After task 6: 67.67%
+
+============================================================
+  Dataset / protocol     : NTU60 / xsub
+  Mode                   : autoencoder
+  Part source            : PKU
+  Data fraction          : 1.0
+  λ_align                : 0.3
+  Classifier mode        : LINEAR on frozen z_task
+  Novelty threshold      : 0.45
+  Novel sample fraction  : 0.03
+  Alpha init             : 0.5
+  Global seed            : -1
+  Shuffle variant        : 2
+  Per-task acc   : ['81.54', '82.32', '75.74', '73.92', '72.52', '67.67']
+  Average acc            : 75.62%
+============================================================
+
+=== DONE ===
+  [Results] saved → results/ntu60_xsub_shuf2.json
+
+Script done on 2026-08-01 18:43:02+00:00 [COMMAND_EXIT_CODE="0"]
