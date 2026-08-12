@@ -17,7 +17,6 @@ Install the required Python packages:
 pip install torch torchvision torchaudio
 pip install transformers
 pip install numpy
-pip install seaborn matplotlib
 pip install scikit-learn
 ```
 
