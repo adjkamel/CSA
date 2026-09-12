@@ -10,19 +10,7 @@ from collections import defaultdict
 
 #------------ Randomly subsample a fixed fraction of samples from arrays X and y
 def _subsample (X ,y ,fraction ,seed =42 ):
-    """
-    [ADD] Stratified subsampling: keep `fraction` of samples per class.
-    fraction=1.0 returns the original lists unchanged (no copy, no cost).
-    Guarantees at least 1 sample per class even at very low fractions.
 
-    Args:
-        X        : list of skeleton arrays
-        y        : list of action IDs (same length as X)
-        fraction : float in (0, 1] — 1.0 means keep everything
-        seed     : random seed for reproducibility across runs
-    Returns:
-        X_sub, y_sub  (lists, same order within each class)
-    """
     if fraction >=1.0 :
         return X ,y 
 
@@ -214,12 +202,7 @@ def prenormalize3d (x ,align_center =True ,align_spine =False ,zaxis =(0 ,1 ),xa
 
 #------------ Load one NTU or PKU npy skeleton file and return (F,25,3) float32 array
 def load_skeleton_sample (path ):
-    """
-    Load a single .npy skeleton file → float32 array (3, F', 25, 2).
-    Normalisation: ProtoGCN PreNormalize3D (align_spine=False) — drop empty
-    frames, put the more-active body first, then center on SpineMid of
-    body-0 frame-0. Matches the distribution the pretrained `j` backbone saw.
-    """
+
     data =np .load (path ,allow_pickle =True ).item ()
 
     F =len (data ["skel_body0"])
