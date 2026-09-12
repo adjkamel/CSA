@@ -150,8 +150,7 @@ class ST_GCN_decode_unit (nn .Module ):
 
 #------------ Construct nine-unit ST-GCN decoding stack restoring 3D joint coordinates
 def _build_decoder (A_norm ):
-    """The kept ST-GCN decoder. dec_in[0] is 384 (was 256) to accept ProtoGCN's
-    feature width; everything else is identical to the original decoder."""
+
     dec_in =[FEAT_DIM ,256 ,128 ,128 ,128 ,64 ,64 ,64 ,3 ]
     dec_out =[256 ,128 ,128 ,128 ,64 ,64 ,64 ,3 ,3 ]
     dec_scl =[1 ,2 ,1 ,1 ,2 ,1 ,1 ,1 ,1 ]
@@ -163,7 +162,7 @@ def _build_decoder (A_norm ):
 
 #------------ MLP projection head mapping motion features to BERT embedding space
 class BertProjectionHead (nn .Module ):
-    """in_dim -> 768 two-layer MLP with LayerNorm, L2-normalised output."""
+
     #------------ Implementation of __init__
     def __init__ (self ,in_dim :int =FEAT_DIM ,out_dim :int =BERT_DIM ):
         super ().__init__ ()
@@ -183,20 +182,7 @@ class BertProjectionHead (nn .Module ):
 
 #------------ Part Motion Autoencoder: ProtoGCN encoder-decoder for one body-part subgraph
 class PartSTGCN (nn .Module ):
-    """
-    Part autoencoder pre-trained on PKU (or NTU) data.
 
-    Encoder : ProtoGCN backbone on the part subgraph (PART_JOINTS[part]).
-    Decoder : kept ST-GCN decoder (reconstructs the part skeleton).
-
-    Training loss (cmain.py, unchanged interface):
-        recon_loss = MSE(decoder(encoder(x)), x)
-        align_loss = MSE(bert_proj(pooled), z_bert_class)
-        total      = recon_loss + λ_align * align_loss
-
-    forward(x) -> (recon, bert_feat)
-    encode(x)  -> pooled (B, 384)   [used by GlobalSTGCNAE, frozen]
-    """
 
     #------------ Implementation of __init__
     def __init__ (self ,part ,device ):
@@ -286,29 +272,7 @@ class PartSTGCN (nn .Module ):
 
 #------------ Continual Motion Autoencoder: full-body encoder with frozen SM-Enc and trainable extra layers
 class GlobalSTGCNAE (nn .Module ):
-    """
-    Global skeleton autoencoder for continual learning (the fast / copy model).
 
-    Streams:
-      • global_encoder : pretrained ProtoGCN on the full 25-joint skeleton,
-                         FROZEN.  Its feature map feeds the trainable extra
-                         layers and the reconstruction decoder.
-      • extra_layers   : ProtoGCN GCN_Blocks (trainable, EWC applied here) that
-                         refine the frozen backbone map into a task feature.
-      • part_models    : frozen ProtoGCN part encoders.  Their pooled semantic
-                         vectors are concatenated into the (stable) BERT
-                         alignment stream via bert_proj_frozen.
-
-    Per-task loss (cmain.py, unchanged interface):
-        recon_loss  = MSE(decoder(feat_map_task), x)
-        align_loss  = MSE(bert_proj_frozen(part_semantic), bert_class_feat)
-        ewc_penalty = Σ EWC(extra_layers)
-        total       = recon_loss + λ_align * align_loss + ewc_penalty
-
-    encode(x)             -> (z_task (B,384), z_frozen_proj (B,768))
-    encode_ztask_only(x)  -> z_task (B,384)
-    forward(x)            -> (recon, z_frozen_proj)
-    """
 
     #------------ Implementation of __init__
     def __init__ (self ,part_models ,device ):
@@ -364,19 +328,18 @@ class GlobalSTGCNAE (nn .Module ):
 
     #------------ Implementation of load_protogcn_pretrained
     def load_protogcn_pretrained (self ,ckpt_path ,verbose =True ):
-        """Fill the frozen global backbone from the pretrained ProtoGCN
-        checkpoint (full 25-joint transfer). Call once, at task-1 construction."""
+
         return load_pretrained_backbone (self .global_encoder ,ckpt_path ,verbose =verbose )
 
 
     #------------ Implementation of _to_proto
     def _to_proto (self ,x ):
-        """(B, C, F, V, M) -> (B, M, F, V, C) for the ProtoGCN backbone."""
+
         return x .permute (0 ,4 ,2 ,3 ,1 ).contiguous ()
 
     #------------ Implementation of _part_semantic
     def _part_semantic (self ,x ):
-        """Concatenated frozen part pooled vectors -> (B, N_PARTS*384)."""
+
         feats =[]
         for part in self .joint_groups :
             xp =x [:,:,:,PART_JOINTS [part ],:]
@@ -385,13 +348,7 @@ class GlobalSTGCNAE (nn .Module ):
 
     #------------ Implementation of _encode_spatial
     def _encode_spatial (self ,x ):
-        """
-        x : (B, C, F, 25, M)
-        Returns
-          feat_map_task   : (B*M, 384, T', 25)   — after extra_layers
-          z_task          : (B, 384)             — pooled task feature
-          z_frozen_pooled : (B, N_PARTS*384)     — frozen part semantic stream
-        """
+
         B ,C ,Fr ,V ,M =x .shape 
 
 
