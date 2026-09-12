@@ -403,13 +403,7 @@ def train_part (model ,loader ,optimizer ,scheduler ,bert_bank ):
 def train_global_ae (model ,loader ,optimizer ,scheduler ,ntu_bert_bank ,
 task_id ,ce_head ,ce_label_map ,ce_loss_weight ,
 num_epochs =None ):
-    """
-    Train a GlobalSTGCNAE for one task.
 
-    Loss = MSE(recon, x)                                     — reconstruction
-         + LAMBDA_ALIGN   * MSE(z_frozen_proj, bert_anchor)  — BERT alignment
-         + CE_WEIGHT * CE(logits, y_subset)                  — auxiliary CE on z_task
-    """
     epochs =num_epochs if num_epochs is not None else GLOBAL_EPOCHS 
     model .train ()
     if ce_head is not None :
@@ -518,14 +512,7 @@ def find_novel_classes (task ,sentence_bank ,threshold =NOVELTY_THRESHOLD ):
 #------------ Find previous classes not semantically covered by the current task for selective replay
 def find_uncovered_previous_classes (task ,sentence_bank ,threshold ,
 already_rehearsed ):
-    """For task t, scan every PREVIOUS class (tasks 1..t-1) and decide whether
-    the CURRENT task covers it. A previous class is UNCOVERED (-> rehearse) if
-    NO current-task class is similar to it (max SPICE F1 to the current classes
-    < threshold). Classes already rehearsed by this mechanism in an earlier task
-    are excluded from the comparison entirely.
 
-    Returns: list of previous class ids to rehearse in this task.
-    """
     current_ids =list (TASK_SPLITS [task ])
     previous_ids =[c for t in range (1 ,task )for c in TASK_SPLITS [t ]]
 
