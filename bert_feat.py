@@ -615,11 +615,7 @@ DATASET_SENTENCE_DESCRIPTIONS :dict [str ,dict [int ,str ]]={
 
 #------------ Frozen BERT encoder returning pooler_output embeddings for a list of strings
 class BertEncoder (nn .Module ):
-    """
-    Thin wrapper around a local bert-base-uncased checkpoint.
-    Returns pooler_output (shape [B, 768]) for a list of text strings.
-    Always runs in eval mode; no gradients flow through BERT weights.
-    """
+
 
     #------------ Implementation of __init__
     def __init__ (self ,bert_path :str ="./bert-base-uncased"):
@@ -710,18 +706,7 @@ def load_bert_features (path :str )->dict [int ,np .ndarray ]:
 
 #------------ Lookup table mapping class IDs to cached BERT class-name embeddings
 class BertFeatureBank :
-    """
-    Holds pre-computed BERT class-name features as on-device tensors.
 
-    The bank automatically generates and saves the .npy file on first use
-    if it does not yet exist.
-
-    API:
-        bank.get_batch(action_ids)  →  (B, 768) tensor
-        bank.get_all_tensor()       →  (sorted_ids, (N, 768) tensor)
-        bank.class_name(action_id)  →  str
-        len(bank)                   →  number of classes
-    """
 
     #------------ Implementation of __init__
     def __init__ (
@@ -793,17 +778,7 @@ out_path :str ,
 bert_path :str ="./bert-base-uncased",
 batch_size :int =16 ,
 )->dict [int ,np .ndarray ]:
-    """
-    Generate BERT pooler features for every CLASS SENTENCE DESCRIPTION
-    in *dataset* ('ntu' only currently; pku falls back to short names).
 
-    Input  : NTU_SENTENCE_DESCRIPTIONS[action_id] — long motion description string
-    Output : saved dict  { action_id: np.float32 array (768,) }  at *out_path*
-             and the same dict returned.
-
-    Batch size is smaller (default 16) than for short names because the
-    sentences are much longer and consume more GPU/CPU memory per sample.
-    """
     assert dataset in DATASET_SENTENCE_DESCRIPTIONS ,f"dataset must be 'ntu' or 'pku', got '{dataset }'"
 
     descriptions =DATASET_SENTENCE_DESCRIPTIONS [dataset ]
@@ -964,21 +939,7 @@ def spice_f1 (props_a ,props_b ):
 
 #------------ Lookup combining BERT sentence embeddings with SPICE proposition sets for selective replay
 class SentenceBertBank :
-    """
-    SPICE-based inter-task motion-novelty bank (drop-in for the former
-    BERT-cosine version — same class name and public API).
 
-    Instead of BERT embeddings it compares the RAW motion-description sentences
-    with SPICE F1 (see sentence_to_propositions / spice_f1 above). The four
-    original constructor arguments are preserved for compatibility; npy_path and
-    bert_path are accepted but ignored (no features are loaded or generated).
-
-    API (unchanged where cmain relies on it):
-        bank.cosine_similarity_matrix(ids_a, ids_b) -> (M,N) tensor of SPICE F1
-        bank.novel_classes(current_ids, previous_ids, threshold) -> list[int]
-        bank.suggest_threshold(current_ids, previous_ids)         -> list[int]
-        len(bank)
-    """
 
     #------------ Implementation of __init__
     def __init__ (
