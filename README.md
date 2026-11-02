@@ -1,11 +1,6 @@
-# Semantic text-guided continual skeleton-based action recognition
+# Continual skeleton-based action recognition via language-guided fine-grained body-part-level motion understanding
 
-A two-phase continual learning framework for skeleton-based action recognition.
-Phase 1 pretrains five Part Motion Autoencoders (PM-AE) on PKU-MMD Part II.
-Phase 2 trains a Continual Motion Autoencoder (CM-AE) incrementally on NTU RGB+D,
-guided by frozen shared motion features and BERT class-name semantic alignment.
-A Selective Semantic Class Replay algorithm reduces forgetting using motion-description
-similarity to decide which previous classes to rehearse.
+
 
 ---
 
